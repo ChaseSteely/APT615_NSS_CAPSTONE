@@ -30,7 +30,10 @@ namespace APT615
             // Use SQL Database if in Azure, otherwise, use SQLite
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
                 services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
+                        .AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
+        e => Configuration.GetSection("GoogleApiKey")
+                .Get<ApplicationConfiguration>());
             else
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlite("Data Source=apt615.db"));
@@ -44,10 +47,7 @@ namespace APT615
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            if (Environment.GetEnvironmentVariable("GOOGLE_MAP") == "MapApi")
-                services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
-        e => Configuration.GetSection("GoogleApiKey")
-                .Get<ApplicationConfiguration>());
+
             // Add Google Maps API
             services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
         e => Configuration.GetSection("ApplicationConfiguration")
