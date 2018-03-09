@@ -44,7 +44,10 @@ namespace APT615
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-
+            if (Environment.GetEnvironmentVariable("GOOGLE_MAP") == "MapApi")
+                services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
+        e => Configuration.GetSection("GoogleApiKey")
+                .Get<ApplicationConfiguration>());
             // Add Google Maps API
             services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
         e => Configuration.GetSection("ApplicationConfiguration")
