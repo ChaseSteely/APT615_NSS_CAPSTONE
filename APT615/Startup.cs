@@ -35,9 +35,9 @@ namespace APT615
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlite("Data Source=apt615.db"));
 
-            Environment.GetEnvironmentVariable("GOOGLE_MAP");
+           if (Environment.GetEnvironmentVariable("GOOGLE_MAP") == "MapAPI")
                  services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
-        e => Configuration.GetSection("GoogleApiKey")
+        e => Configuration.GetSection("ApplicationConfiguration")
                 .Get<ApplicationConfiguration>());
 
 
