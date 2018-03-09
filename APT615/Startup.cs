@@ -35,11 +35,6 @@ namespace APT615
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlite("Data Source=apt615.db"));
 
-           if (Environment.GetEnvironmentVariable("GOOGLE_MAP") == "MapAPI")
-                 services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
-        e => Configuration.GetSection("ApplicationConfiguration")
-                .Get<ApplicationConfiguration>());
-
 
             // Automatically perform database migration
             services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
