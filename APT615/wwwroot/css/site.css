@@ -1,14 +1,23 @@
 ﻿body {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
+.noPadding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
-.body-content {
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
+}*/
 
 /* Carousel */
 .carousel-caption p {
@@ -21,10 +30,6 @@
     width: 100%;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
