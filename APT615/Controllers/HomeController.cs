@@ -6,12 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using APT615.Models;
 using APT615.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace APT615.Controllers
 {
     public class HomeController : Controller
     {
-        
+
+        public IConfiguration Configuration { get; set; }
+
+        public HomeController(IConfiguration config)
+        {
+            Configuration = config;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -20,6 +28,7 @@ namespace APT615.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
+            ViewData["myConnectionString"] = Configuration.GetConnectionString("GoogleApiKey");
 
             return View();
         }
