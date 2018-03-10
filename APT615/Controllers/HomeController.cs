@@ -28,7 +28,6 @@ namespace APT615.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-            ViewData["myConnectionString"] = Configuration.GetConnectionString("GoogleApiKey");
 
             return View();
         }
