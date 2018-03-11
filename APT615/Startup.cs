@@ -27,16 +27,12 @@ namespace APT615
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+           
             // Use SQL Database if in Azure, otherwise, use SQLite
-         
-                services.AddDbContext<ApplicationDbContext>(options =>
+
+            services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
-
-
-            // Automatically perform database migration
-            services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -51,8 +47,8 @@ namespace APT615
         e => Configuration.GetSection("ApplicationConfiguration")
                 .Get<ApplicationConfiguration>());
 
-
             services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

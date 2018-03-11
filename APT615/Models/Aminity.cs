@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace APT615.Models
 {
-    public class Amenity
+    public class Aminity
     {
         // Primary Key
         [Key]
@@ -16,6 +19,6 @@ namespace APT615.Models
         public string Type { get; set; }
 
         //entity magic - reference to the Amenities of this Apartment aka Join Table
-        public virtual ICollection<ApartmentAmenity> ApartmentAmenity { get; set; }
+        public virtual ICollection<ApartmentAmenity> ApartmentAmenities { get; set; }
     }
 }

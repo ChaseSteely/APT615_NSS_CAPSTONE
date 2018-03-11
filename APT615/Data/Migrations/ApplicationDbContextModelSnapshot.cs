@@ -20,7 +20,7 @@ namespace APT615.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("APT615.Models.Amenity", b =>
+            modelBuilder.Entity("APT615.Models.Aminity", b =>
                 {
                     b.Property<int>("AmenityId")
                         .ValueGeneratedOnAdd();
@@ -131,6 +131,12 @@ namespace APT615.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -279,19 +285,19 @@ namespace APT615.Data.Migrations
             modelBuilder.Entity("APT615.Models.Apartment", b =>
                 {
                     b.HasOne("APT615.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Apartments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("APT615.Models.ApartmentAmenity", b =>
                 {
-                    b.HasOne("APT615.Models.Amenity", "Amenity")
-                        .WithMany("ApartmentAmenity")
+                    b.HasOne("APT615.Models.Aminity", "Aminity")
+                        .WithMany("ApartmentAmenities")
                         .HasForeignKey("AmenityId");
 
                     b.HasOne("APT615.Models.Apartment", "Apartment")
-                        .WithMany("ApartmentAmenity")
+                        .WithMany("ApartmentAmenities")
                         .HasForeignKey("ApartmentId");
                 });
 

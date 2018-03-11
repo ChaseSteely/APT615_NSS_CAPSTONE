@@ -22,7 +22,7 @@ namespace APT615.Controllers
         // GET: Apartments
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Apartment.ToListAsync());
+            return View(await _context.Apartments.ToListAsync());
         }
 
         // GET: Apartments/Details/5
@@ -33,7 +33,7 @@ namespace APT615.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartment
+            var apartment = await _context.Apartments
                 .SingleOrDefaultAsync(m => m.ApartmentId == id);
             if (apartment == null)
             {
@@ -73,7 +73,7 @@ namespace APT615.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartment.SingleOrDefaultAsync(m => m.ApartmentId == id);
+            var apartment = await _context.Apartments.SingleOrDefaultAsync(m => m.ApartmentId == id);
             if (apartment == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace APT615.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartment
+            var apartment = await _context.Apartments
                 .SingleOrDefaultAsync(m => m.ApartmentId == id);
             if (apartment == null)
             {
@@ -139,15 +139,15 @@ namespace APT615.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var apartment = await _context.Apartment.SingleOrDefaultAsync(m => m.ApartmentId == id);
-            _context.Apartment.Remove(apartment);
+            var apartment = await _context.Apartments.SingleOrDefaultAsync(m => m.ApartmentId == id);
+            _context.Apartments.Remove(apartment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ApartmentExists(int id)
         {
-            return _context.Apartment.Any(e => e.ApartmentId == id);
+            return _context.Apartments.Any(e => e.ApartmentId == id);
         }
     }
 }

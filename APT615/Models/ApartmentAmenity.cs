@@ -1,4 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace APT615.Models
 {
@@ -13,6 +19,6 @@ namespace APT615.Models
         public Apartment Apartment { get; set; }
 
         public int? AmenityId { get; set; }
-        public Amenity Amenity { get; set; }
+        public Aminity Aminity { get; set; }
     }
 }
