@@ -34,7 +34,7 @@ namespace APT615
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             else
                 services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseSqlite("Data Source=APT.db"));
+                           options.UseSqlite("Data Source=APT.db"));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -61,6 +61,7 @@ namespace APT615
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
             }
             else
             {
