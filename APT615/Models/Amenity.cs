@@ -16,6 +16,6 @@ namespace APT615.Models
         public string Type { get; set; }
 
         //entity magic - reference to the Amenities of this Apartment aka Join Table
-        public virtual ICollection<ApartmentAmenity> ApartmentAmenities { get; set; }
+        public virtual ICollection<ApartmentAmenity> ApartmentAmenity { get; set; }
     }
 }

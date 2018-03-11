@@ -90,7 +90,7 @@ namespace APT615.Models
         public ApplicationUser User { get; set; }
 
         //entity magic - reference to the Amenities of this Apartment
-        public virtual ICollection<ApartmentAmenity> ApartmentAmenities { get; set; }
+        public virtual ICollection<ApartmentAmenity> ApartmentAmenity { get; set; }
 
 
     }

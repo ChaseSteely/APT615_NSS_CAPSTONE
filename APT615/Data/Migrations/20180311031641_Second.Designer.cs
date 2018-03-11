@@ -11,9 +11,10 @@ using System;
 namespace APT615.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180311031641_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -287,11 +288,11 @@ namespace APT615.Data.Migrations
             modelBuilder.Entity("APT615.Models.ApartmentAmenity", b =>
                 {
                     b.HasOne("APT615.Models.Amenity", "Amenity")
-                        .WithMany("ApartmentAmenity")
+                        .WithMany("ApartmentAmenities")
                         .HasForeignKey("AmenityId");
 
                     b.HasOne("APT615.Models.Apartment", "Apartment")
-                        .WithMany("ApartmentAmenity")
+                        .WithMany("ApartmentAmenities")
                         .HasForeignKey("ApartmentId");
                 });
 
