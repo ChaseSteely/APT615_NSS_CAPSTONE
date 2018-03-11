@@ -7,21 +7,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APT615.Data;
 using APT615.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
 
 namespace APT615.Controllers
 {
     public class ApartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private IHostingEnvironment _hostingEnvironment;
 
-        public ApartmentsController(ApplicationDbContext context)
+        public ApartmentsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IHostingEnvironment environment)
         {
             _context = context;
+            _userManager = userManager;
+            _hostingEnvironment = environment;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Apartments
         public async Task<IActionResult> Index()
         {
+            var user = await GetCurrentUserAsync();
             return View(await _context.Apartments.ToListAsync());
         }
 

@@ -7,6 +7,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0" />
@@ -21,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
