@@ -27,7 +27,6 @@ namespace APT615
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             // Use SQL Database if in Azure, otherwise, use SQLite
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
                 services.AddDbContext<ApplicationDbContext>(options =>
@@ -44,7 +43,6 @@ namespace APT615
             services.AddTransient<IEmailSender, EmailSender>();
 
             // Add Google Maps API
-            Environment.GetEnvironmentVariable("GoogleApiKey");
             services.AddSingleton<IApplicationConfiguration, ApplicationConfiguration>(
         e => Configuration.GetSection("ApplicationConfiguration")
                 .Get<ApplicationConfiguration>());

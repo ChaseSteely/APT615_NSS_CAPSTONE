@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace APT615.Data.Migrations
+namespace APT615.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180311063831_four")]
-    partial class four
+    [Migration("20180311174430_PleaseWork")]
+    partial class PleaseWork
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
