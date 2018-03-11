@@ -32,7 +32,9 @@ namespace APT615
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+            else
+                services.AddDbContext<ApplicationDbContext>(options =>
+                        options.UseSqlite("Data Source=APT.db"));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
