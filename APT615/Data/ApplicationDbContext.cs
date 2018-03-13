@@ -16,7 +16,7 @@ namespace APT615.Data
         }
 
         public DbSet<Apartment> Apartments { get; set; }
-        public DbSet<Aminity> Aminities { get; set; }
+        public DbSet<Amenity> Amenities { get; set; }
         public DbSet<ApartmentAmenity> ApartmentAmenities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -27,7 +27,7 @@ namespace APT615.Data
             // Add your customizations after calling base.OnModelCreating(builder);
 
             builder.Entity<Apartment>().ToTable("Apartment");
-            builder.Entity<Aminity>().ToTable("Amenity");
+            builder.Entity<Amenity>().ToTable("Amenity");
             builder.Entity<ApartmentAmenity>().ToTable("ApartmentAmenity");
             builder.Entity<Apartment>()
                             .Property(b => b.DateAdded)

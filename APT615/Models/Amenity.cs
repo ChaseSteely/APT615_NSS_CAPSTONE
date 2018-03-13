@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace APT615.Models
 {
-    public class Aminity
+    public class Amenity
     {
         // Primary Key
         [Key]

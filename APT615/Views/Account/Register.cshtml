@@ -11,30 +11,31 @@
                     <div class="card card-login card-plain">
                         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="form" auto-complete="something-new">
                             <div class="card-header text-center">
-                                <div class="logo-container">
-                                    <img src="~/images/Logo.png" alt="APT615 Logo">
-                                </div>
-                                <h4>Create a new account.</h4>
-                                <hr />
+                                <h4 class="brand">Create a new account.</h4>
                             </div>
                             <div class="card-body">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+
                                 <div class="input-group form-group-no-border input-lg">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
                                     </div>
                                     <input asp-for="Email" class="form-control" placeholder="email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="input-group form-group-no-border input-lg">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                                     </div>
                                     <input asp-for="Password" class="form-control" placeholder="password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                                 <div class="input-group form-group-no-border input-lg">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                                     </div>
                                     <input asp-for="ConfirmPassword" class="form-control" placeholder="confirm password" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                 </div>
                                 <div class="input-group form-group-no-border input-lg">
                                     <div class="input-group-prepend">
@@ -49,7 +50,7 @@
                                     <input asp-for="LastName" class="form-control" placeholder="last name" />
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Register</button>
+                            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block brand">Register</button>
                         </form>
                     </div>
                 </div>
@@ -57,4 +58,6 @@
         </div>
     </div>
 </div>
-
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
