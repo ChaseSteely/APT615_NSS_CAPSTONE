@@ -6,9 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Shared\landing-page.cshtml" />
     <Content Remove="Views\Shared\login-page.cshtml" />
-    <Content Remove="Views\Shared\template.cshtml" />
   </ItemGroup>
 
 
@@ -29,11 +27,6 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Shared\landing-page.cshtml" />
-    <None Include="Views\Shared\template.cshtml" />
   </ItemGroup>
 
 </Project>
