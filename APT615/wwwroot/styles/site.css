@@ -1,0 +1,44 @@
+﻿input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    opacity: .0;
+}
+
+
+.brand {
+    font-family: 'Megrim', cursive;
+    font-size: 2em !important;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .carousel-item img[src$=".svg"] {
+    width: 100%;
+}
+
+#loginImg {
+    background-image:url('../images/downtown.jpg') !important;
+}
+
+#loginLogo {
+    color: white !important;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

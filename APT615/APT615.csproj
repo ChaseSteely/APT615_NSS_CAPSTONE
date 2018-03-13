@@ -5,6 +5,12 @@
     <UserSecretsId>aspnet-APT615-71C843EB-9B5F-4C5B-BBA0-3A4F0CED9F49</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Shared\landing-page.cshtml" />
+    <Content Remove="Views\Shared\login-page.cshtml" />
+    <Content Remove="Views\Shared\template.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.0.0" />
@@ -23,6 +29,11 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\landing-page.cshtml" />
+    <None Include="Views\Shared\template.cshtml" />
   </ItemGroup>
 
 </Project>
