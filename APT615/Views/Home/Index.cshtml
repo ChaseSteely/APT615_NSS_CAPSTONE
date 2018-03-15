@@ -1,6 +1,53 @@
-﻿@{
+﻿@inject APT615.Services.IApplicationConfiguration AppSettings;
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<
+<div class="sections-page">
+    <div class="wrapper">
+        <div class="cd-section" id="headers">
+            <div class="page-header header-filter">
+                <div class="page-header-image" data-parallax="true" style="background-image: url('../images/couch.jpg');"></div>
+                <div class="content-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 ml-auto mr-auto text-center rellax" data-rellax-speed="-4" data-rellax-zindex="5">
+                                <img id="indexLogo" src="../images/logoWhite.png" alt="APT615 Logo" />
+                            </div>
+                            <div class="col-md-8 ml-auto mr-auto rellax text-center" data-rellax-speed="1">
+                                <p id="homeIntroP">Your Nashville Apartment Tracker</p>
+                            </div>
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="card card-raised card-form-horizontal card-plain" data-background-color>
+                                    <div class="card-body">
+                                        <button id="getIndexMap" class="btn btn-primary btn-round btn-lg btn-block brand">click me</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> @*END PAGE-HEADER*@
+            <div id="map" style="width: 100%; height: 600px"></div>
+            <button id="more" class="btn btn-primary btn-round btn-lg btn-block brand">more results</button>
+            <div id="mapLogin" class="col-md-8 ml-auto mr-auto rellax text-center" data-rellax-speed="1">
+                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log In To Begin</a>
+            </div>
+        </div>
 
+        </div> @*END WRAPPER*@
+    </div> @*END CD-SECTION*@
+</div> @*END SECTIONS_PAGE*@
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=@AppSettings.GoogleApiKey&libraries=places"></script>
+<script src="~/js/plugins/rellax.min.js" type="text/javascript"></script>
+<script>
+    // Also can pass in optional settings block
+    var rellax = new Rellax('.rellax', {
+        center: true,
+        round: true,
+        vertical: true,
+        horizontal: false
+    });
+</script>

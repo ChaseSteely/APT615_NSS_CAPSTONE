@@ -36,6 +36,17 @@
     color: white !important;
 }
 
+#homeIntroP {
+    font-size: 1.5em;
+}
+
+#mapLogin {
+    padding-bottom: 25px;
+}
+.nav-link {
+    font-size: 1em !important
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
