@@ -43,14 +43,33 @@
 #mapLogin {
     padding-bottom: 25px;
 }
+
 .nav-link {
     font-size: 1em !important
+}
+
+.form-group {
+    padding-bottom: 10px !important;
+}
+
+option {
+    color: #fa7a50 !important;
 }
 
 #apartmentSearch {
     font-size: 1.5em !important;
     border-color: #fa7a50 !important;
     border-width: 2px !important;
+}
+
+#logoutBtn {
+    opacity: .8 !important;
+}
+
+#logoutBtn:hover {
+    background-color: white !important;
+    opacity: .6 !important;
+    color: #fa7a50 !important;
 }
 
 /* Hide/rearrange for smaller screens */

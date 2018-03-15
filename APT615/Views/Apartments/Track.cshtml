@@ -1,0 +1,217 @@
+﻿@inject APT615.Services.IApplicationConfiguration AppSettings;
+@model APT615.Models.Apartment
+
+@{
+    ViewData["Title"] = "Track";
+}
+
+<div class="landing-page">
+    <div class="wrapper">
+        <div class="page-header header-filter">
+            <div class="page-header-image" style="background-image: url('../images/modern.jpg');"></div>
+            <div class="content-center">
+                <div class="col-md-12 ml-auto">
+                    <div class="card card-login card-plain">
+                        <div class="card-body">
+                            <div class="input-group form-group-lg input-lg rellax">
+                                <input id="apartmentSearch" type="text" class="form-control text-center controls" placeholder="enter an apartment to track" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="trackMap" style="width: 100%; height: 600px"></div>
+
+        <div class="testimonials-1 section-image" style="background-image: url('../images/floorplanDark.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <div class="card card-raised card-form-horizontal card-plain" data-background-color>
+                            <div class="card-body">
+                                <form asp-action="Create" class="form">
+                                    <div class="row">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class=" col-md-6">
+                                            <div class="form-group input">
+                                                <input asp-for="Name" class="form-control" placeholder="apartment name" />
+                                                <span asp-validation-for="Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="Area" class="form-control" placeholder="neighborhood or area of town" />
+                                                <span asp-validation-for="Area" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="Rent" class="form-control" placeholder="$ rent" />
+                                                <span asp-validation-for="Rent" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>@*END FORM ROW*@
+
+                                    <div class="row">
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="ApplicationFee" class="form-control" placeholder="$ application fee" />
+                                                <span asp-validation-for="ApplicationFee" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="PetFee" class="form-control" placeholder="$ pet fee" />
+                                                <span asp-validation-for="PetFee" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="MiscFees" class="form-control" placeholder="$ misc monthly fees" />
+                                                <span asp-validation-for="MiscFees" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="AdminFee" class="form-control" placeholder="$ admin fee" />
+                                                <span asp-validation-for="AdminFee" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>@*END FORM ROW*@
+                                    <div class="form-group input">
+                                        <input asp-for="Note" class="form-control" placeholder="notes" />
+                                        <span asp-validation-for="Note" class="text-danger"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <select class="form-control select" placeholder="# of bedrooms" type="number" data-val="true" data-val-required="The Bedrooms field is required." id="Bedrooms" name="Bedrooms" value="">
+                                                    <option selected hidden># of bedrooms</option>
+                                                    <option value="0">Studio</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                </select>
+                                                <span asp-validation-for="Bedrooms" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <select class="form-control" type="number" data-val="true" data-val-required="The Bathrooms field is required." id="Bathrooms" name="Bathrooms" value="">
+                                                    <option selected hidden># of bathrooms</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                                <span asp-validation-for="Bathrooms" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="SqFt" class="form-control" placeholder="sqft" />
+                                                <span asp-validation-for="SqFt" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>@*END FORM ROW*@
+
+                                    <div class="row">
+                                        <div class=" col-md-4">
+                                            <div class="form-group input">
+                                                <input asp-for="Street" class="form-control" placeholder="street address" />
+                                                <span asp-validation-for="Street" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="City" class="form-control" placeholder="city" />
+                                                <span asp-validation-for="City" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-2">
+                                            <div class="form-group input">
+                                                <input asp-for="State" class="form-control" placeholder="state" />
+                                                <span asp-validation-for="State" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <div class="form-group input">
+                                                <input asp-for="ZipCode" class="form-control" placeholder="zipcode" />
+                                                <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>@*END FORM ROW*@
+
+                                    <div class="row">
+                                        <div class=" col-md-2">
+                                            <div class="form-group input">
+                                                <input asp-for="Latitude" class="form-control" placeholder="latitude" />
+                                                <span asp-validation-for="Latitude" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-2">
+                                            <div class="form-group input">
+                                                <input asp-for="Longitude" class="form-control" placeholder="longitude" />
+                                                <span asp-validation-for="Longitude" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-4">
+                                            <div class="form-group input">
+                                                <input asp-for="Website" class="form-control" placeholder="website" />
+                                                <span asp-validation-for="Website" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-4">
+                                            <div class="form-group input">
+                                                <input asp-for="PhotoUrl" class="form-control" placeholder="photo url" />
+                                                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>@*END FORM ROW*@
+                                    @*<div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input asp-for="Favorited" /> @Html.DisplayNameFor(model => model.Favorited)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input asp-for="Visited" /> @Html.DisplayNameFor(model => model.Visited)
+                                            </label>
+                                        </div>
+                                    </div>*@
+                                    <div class="card-footer text-center">
+                                        <button type="submit" class="btn btn-primary btn-round btn-sm btn-block brand">+ Apartment</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>@*END FORM CONTAINER*@
+        </div>
+
+    </div>
+</div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=@AppSettings.GoogleApiKey&libraries=places&callback=initAutocomplete"></script>
+<script src="~/js/plugins/rellax.min.js" type="text/javascript"></script>
+<script>
+    // Also can pass in optional settings block
+    var rellax = new Rellax('.rellax', {
+        center: true,
+        round: true,
+        vertical: true,
+        horizontal: false
+    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

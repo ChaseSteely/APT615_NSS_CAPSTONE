@@ -53,7 +53,7 @@ namespace APT615.Controllers
         }
 
         // GET: Apartments/Create
-        public IActionResult Create()
+        public IActionResult Track()
         {
             return View();
         }
@@ -63,7 +63,7 @@ namespace APT615.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ApartmentId,Name,Area,Rent,ApplicationFee,PetFee,MiscFees,AdminFee,DateAdded,Note,Bedrooms,Bathrooms,SqFt,Street,City,State,ZipCode,Latitude,Longitude,Website,PhotoUrl,Favorited,Visited")] Apartment apartment)
+        public async Task<IActionResult> Track([Bind("ApartmentId,Name,Area,Rent,ApplicationFee,PetFee,MiscFees,AdminFee,DateAdded,Note,Bedrooms,Bathrooms,SqFt,Street,City,State,ZipCode,Latitude,Longitude,Website,PhotoUrl,Favorited,Visited")] Apartment apartment)
         {
             if (ModelState.IsValid)
             {
