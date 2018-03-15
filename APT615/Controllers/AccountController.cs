@@ -65,7 +65,7 @@ namespace APT615.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction(nameof(ApartmentsController.Create), "Apartments");
                 }
                 if (result.RequiresTwoFactor)
                 {

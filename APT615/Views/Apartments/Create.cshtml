@@ -4,9 +4,30 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>Apartment</h4>
+<div class="sections-page">
+    <div class="wrapper">
+        <div class="cd-section" id="headers">
+            <div class="page-header header-filter">
+                <div class="page-header-image" data-parallax="true" style="background-image: url('../images/modern.jpg');"></div>
+                <div class="content-center">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 ml-auto mr-auto">
+                                <div class="card card-raised card-form-horizontal card-plain" data-background-color>
+                                    <div class="card-body">
+                                        <div class="input-group form-group-lg input-lg">
+                                            <input id="apartmentSearch" type="text" class="form-control text-center" placeholder="enter an apartment" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> @*END PAGE-HEADER*@
+        </div> @*END CD-SECTION*@
+    </div> @*END WRAPPER*@
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -107,7 +128,7 @@
                 <input asp-for="PhotoUrl" class="form-control" />
                 <span asp-validation-for="PhotoUrl" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="Favorited" /> @Html.DisplayNameFor(model => model.Favorited)
@@ -120,7 +141,7 @@
                         <input asp-for="Visited" /> @Html.DisplayNameFor(model => model.Visited)
                     </label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
