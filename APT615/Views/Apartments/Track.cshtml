@@ -170,19 +170,19 @@
                                         </div>
                                     </div>@*END FORM ROW*@
                                     @*<div class="form-group">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input asp-for="Favorited" /> @Html.DisplayNameFor(model => model.Favorited)
-                                            </label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input asp-for="Favorited" /> @Html.DisplayNameFor(model => model.Favorited)
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input asp-for="Visited" /> @Html.DisplayNameFor(model => model.Visited)
-                                            </label>
-                                        </div>
-                                    </div>*@
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input asp-for="Visited" /> @Html.DisplayNameFor(model => model.Visited)
+                                                </label>
+                                            </div>
+                                        </div>*@
                                     <div class="card-footer text-center">
                                         <button type="submit" class="btn btn-primary btn-round btn-sm btn-block brand">+ Apartment</button>
                                     </div>
@@ -200,6 +200,10 @@
 
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="~/js/trackApt.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=@AppSettings.GoogleApiKey&libraries=places&callback=initAutocomplete"></script>
 <script src="~/js/plugins/rellax.min.js" type="text/javascript"></script>
 <script>

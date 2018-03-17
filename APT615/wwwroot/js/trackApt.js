@@ -295,6 +295,12 @@
         });
         map.fitBounds(bounds);
     });
+
+    //function zillow(place) {
+    //    $.ajax({
+    //        url: 'http://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz18pqlcb99u3_3s95g&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA'
+    //    })
+    //}
     
     function createMarker(place) {
 
@@ -307,13 +313,23 @@
             animation: google.maps.Animation.DROP,
             map: map
         });
+
+        let targetOffset = $('#trackMap').offset().top;
+        $('html, body').animate({ scrollTop: targetOffset }, 1000);
+
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent('<div id="content"><strong>' + place.name + '<strong><br>');
             infowindow.open(map, this);
         });
+
     }
 
     //Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set('styled_map', styledMapType);
     map.setMapTypeId('styled_map');
 } //END initAutoComplete()
+
+$('#apartmentsNav').click(function () {
+    initAutoComplete()
+});
+

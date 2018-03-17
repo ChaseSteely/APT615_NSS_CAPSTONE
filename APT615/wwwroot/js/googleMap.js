@@ -1,4 +1,18 @@
 ﻿$('#getIndexMap').click(function () {
+    
+        $.ajax({
+            url: "../js/apartment.json",
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                let apartment = data.buildings
+                apartment.forEach((a, index) => {
+                    console.log(a)
+                })
+                
+            }//END SUCCESS
+        })
+    
     let targetOffset = $('#map').offset().top;
     $('html, body').animate({ scrollTop: targetOffset }, 1000);
     initMap();

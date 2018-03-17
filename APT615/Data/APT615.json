@@ -1,0 +1,241 @@
+﻿{
+  "apartments": [
+    {
+      "Name": "IMT 8 South",
+      "Area": "Melrose-Waverly",
+      "ApplicationFee": 75,
+      "AdminFee": 150,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,310 – 1,395 | 1 Bedroom $1,485 – 1,695 | 2 Bedrooms $2,140 – 2,380"
+    },
+    {
+      "Name": "West 46th Apartments",
+      "Area": "Sylvan Park",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,170 – 1,620 | 2 Bedrooms $1,805 – 2,035"
+    },
+    {
+      "Name": "Duet Apartments",
+      "Area": "West End",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 500,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,050 – 1,600 | 2 Bedrooms $1,960 – 2,290"
+    },
+    {
+      "Name": "Note 16 Apartments",
+      "Area": "Edgehill",
+      "ApplicationFee": 75,
+      "AdminFee": 200,
+      "PetFee": 500,
+      "MiscFees": 75,
+      "AvgRent": "Studio $1,250 | 1 Bedroom $1,175 – 1,580 | 2 Bedrooms $1,825 – 2,655"
+    },
+    {
+      "Name": "The Pearl",
+      "Area": "Germantown",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,099 – 1,274 | 1 Bedroom Coming Soon | 2 Bedrooms $1,725 – 1,925"
+    },
+    {
+      "Name": "The Gosset on Church",
+      "Area": "Downtown",
+      "ApplicationFee": 85,
+      "AdminFee": 150,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,317 – 1,950 | 2 Bedrooms $1,946 – 2,550 | 3 Bedrooms $2,785 – 3,035"
+
+    },
+    {
+      "Name": "Solis North Gulch Apartments",
+      "Area": "Gulch",
+      "ApplicationFee": 50,
+      "AdminFee": 0,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,312 – 1,633 | 1 Bedroom $1,660 – 2,145 | 2 Bedrooms $2,160 – 3,481 | 3 Bedrooms $3,873 – 4,108"
+    },
+    {
+      "Name": "1505 Demonbreun Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,344 – 2,003 | 1 Bedroom $1,490 – 2,032 | 2 Bedrooms $2,181 – 3,824"
+    },
+    {
+      "Name": "The Shay Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 49,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,465 – 1,755 | 1 Bedroom $1,620 – 2,560 | 2 Bedrooms $2,450 – 5,600"
+    },
+    {
+      "Name": "The Morris Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 95,
+      "AdminFee": 300,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,473 – 1,883 | 1 Bedroom $1,508 – 4,809 | 2 Bedrooms $2,415 – 5,978"
+    },
+    {
+      "Name": "Olmested Nashville",
+      "Area": "Downtown",
+      "ApplicationFee": 75,
+      "AdminFee": 150,
+      "PetFee": 300,
+      "MiscFees": 100,
+      "AvgRent": "Studio $1,219 – 1,377 | 1 Bedroom $1,349 – 1,749 | 2 Bedrooms $1,944 – 3,930 | 3 Bedrooms $3,142 – 3,377"
+    },
+    {
+      "Name": "The Flats at Taylor Place",
+      "Area": "Germantown",
+      "ApplicationFee": 75,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,236 – 1,431 | 1 Bedroom $1,310 – 1,771 | 2 Bedrooms $1,864 – 2,459"
+    },
+    {
+      "Name": "One Metrocenter",
+      "Area": "Germantown",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,285 – 2,210 | 2 Bedrooms $1,635 – 2,485"
+    },
+    {
+      "Name": "Charlotte at Midtown",
+      "Area": "Midtown",
+      "ApplicationFee": 60,
+      "AdminFee": 300,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,004 – 2,549 | 2 Bedrooms $1,772 – 3,697"
+    },
+    {
+      "Name": "River House Apartments",
+      "Area": "Downtown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,451 – 1,476 | 1 Bedroom $1,386 – 2,250 | 2 Bedrooms $2,465 – 2,545"
+    },
+    {
+      "Name": "The 500 Fifth",
+      "Area": "Downtown",
+      "ApplicationFee": 49,
+      "AdminFee": 150,
+      "PetFee": 700,
+      "MiscFees": 100,
+      "AvgRent": "Studio $1,249 | 1 Bedroom $1,349 – 1,449 | 2 Bedrooms $2,339"
+    },
+    {
+      "Name": "909 Flats",
+      "Area": "Germantown",
+      "ApplicationFee": 75,
+      "AdminFee": 250,
+      "PetFee": 550,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,324 – 1,365 | 1 Bedroom $1,242 – 1,775 | 2 Bedrooms $1,864 – 2,555"
+    },
+    {
+      "Name": "Carillon Apartments",
+      "Area": "Germantown",
+      "ApplicationFee": 50,
+      "AdminFee": 49,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,481 – 1,684 | 2 Bedrooms $1,950 – 2,625"
+    },
+    {
+      "Name": "Novel Music Row Apartments",
+      "Area": "Edgehill",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 550,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,225 – 1,674 | 1 Bedroom $1,599 – 2,574 | 2 Bedrooms $2,453 – 8,050"
+    },
+    {
+      "Name": "Station 40",
+      "Area": "Sylvan Heights",
+      "ApplicationFee": 60,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,049 – 1,150 | 1 Bedroom $1,375 – 1,705 | 2 Bedrooms $1,943 – 2,250"
+    },
+    {
+      "Name": "23Hundred at Berry Hill",
+      "Area": "Melrose-Waverly",
+      "ApplicationFee": 75,
+      "AdminFee": 250,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,340 – 1,595 | 2 Bedrooms $1,835 – 2,125"
+    },
+    {
+      "Name": "City View Apartment Homes",
+      "Area": "Downtown",
+      "ApplicationFee": 50,
+      "AdminFee": 200,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "Studio $999 – 1,675 | 1 Bedroom $1,600 – 1,990 | 2 Bedrooms $2,100 – 3,200"
+    },
+    {
+      "Name": "LC Germantown",
+      "Area": "Germantown",
+      "ApplicationFee": 55,
+      "AdminFee": 125,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,395 – 1,641 | 1 Bedroom $1,500 – 2,050 | 2 Bedrooms $2,212 – 2,736"
+    },
+    {
+      "Name": "Gale Lofts",
+      "Area": "Breeze Hill",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,277 – 1,535 | 2 Bedrooms $1,957 – 2,165"
+    },
+    {
+      "Name": "Vista Germantown",
+      "Area": "Germantown",
+      "ApplicationFee": 50,
+      "AdminFee": 200,
+      "PetFee": 375,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,265 – 2,420 | 2 Bedrooms $1,795 – 2,577"
+    },
+    {
+      "Name": "Vista Germantown",
+      "Area": "Germantown",
+      "ApplicationFee": 50,
+      "AdminFee": 200,
+      "PetFee": 375,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,265 – 2,420 | 2 Bedrooms $1,795 – 2,577"
+    },
+
+
+  ] //END APARTMENTS
+}

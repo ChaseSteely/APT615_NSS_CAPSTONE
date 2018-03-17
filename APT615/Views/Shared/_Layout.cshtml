@@ -44,7 +44,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Apartments" asp-action="Track">Apartments</a>
+                                <a id="apartmentsNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="Track">Apartments</a>
                             </li>
                         }
 
@@ -113,7 +113,8 @@
     <script src="~/js/bootstrap-temp.js" type="text/javascript"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/googleMap.js"></script>
-    <script src="~/js/trackApt.js"></script>
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
