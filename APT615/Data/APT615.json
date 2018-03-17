@@ -57,7 +57,7 @@
     },
     {
       "Name": "Solis North Gulch Apartments",
-      "Area": "Gulch",
+      "Area": "The Gulch",
       "ApplicationFee": 50,
       "AdminFee": 0,
       "PetFee": 300,
@@ -227,14 +227,240 @@
       "AvgRent": "1 Bedroom $1,265 – 2,420 | 2 Bedrooms $1,795 – 2,577"
     },
     {
-      "Name": "Vista Germantown",
+      "Name": "Velocity in the Gulch",
+      "Area": "Downtown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 75,
+      "AvgRent": "Studio $1,252 – 2,034 | 1 Bedroom $1,165 – 2,513 | 2 Bedrooms $2,339 – 4,556"
+    },
+    {
+      "Name": "Pine Street Flats",
+      "Area": "The Gulch",
+      "ApplicationFee": 75,
+      "AdminFee": 200,
+      "PetFee": 199,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,199 – 1,499 | 1 Bedroom $1,399 – 2,299 | 2 Bedrooms $2,299 – 3,399"
+    },
+    {
+      "Name": "The SoBro",
+      "Area": "Downtown",
+      "ApplicationFee": 50,
+      "AdminFee": 300,
+      "PetFee": 325,
+      "MiscFees": 100,
+      "AvgRent": "Studio $1,369 – 3,814 | 1 Bedroom $1,362 – 4,008 | 2 Bedrooms $4,625 – 8,646"
+    },
+    {
+      "Name": "1818 Church Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 350,
+      "MiscFees": 50,
+      "AvgRent": "Studio $1,185 – 1,555 | 1 Bedroom $1,550 – 2,385"
+    },
+    {
+      "Name": "Twenty & Grand Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 350,
+      "PetFee": 500,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,620 – 1,790 | 2 Bedrooms $2,045 – 2,505"
+    },
+    {
+      "Name": "Olympus Midtown",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 350,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,202 – 1,525 | 2 Bedrooms $1,716 – 2,310"
+    },
+    {
+      "Name": "Octave Apartments",
+      "Area": "Melrose-Waverly",
+      "ApplicationFee": 75,
+      "AdminFee": 300,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,330 – 1,463 | 1 Bedroom $1,394 – 1,533 | 2 Bedrooms $1,899 – 2,636"
+    },
+    {
+      "Name": "ParkCentral Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,530 – 1,880 | 2 Bedrooms $2,335 – 2,730"
+    },
+    {
+      "Name": "Eleven North",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,328 – 2,222 | 2 Bedrooms $1,864 – 3,346 | 3 Bedrooms $2,636 – 4,532"
+    },
+    {
+      "Name": "Hayes House Hillsboro Village",
+      "Area": "West End",
+      "ApplicationFee": 60,
+      "AdminFee": 300,
+      "PetFee": 400,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,314 | 1 Bedroom $1,358 – 1,635 | 2 Bedrooms $1,799 – 2,139"
+    },
+    {
+      "Name": "Terra House",
+      "Area": "Downtown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,315 – 1,471 1 Bedroom $1,505 – 1,950 2 Bedrooms $2,278 – 2,880"
+    },
+    {
+      "Name": "Vertis Green Hills",
+      "Area": "Green Hills",
+      "ApplicationFee": 50,
+      "AdminFee": 300,
+      "PetFee": 350,
+      "MiscFees": 50,
+      "AvgRent": "Studio $1,799 – 2,069 | 1 Bedroom $1,829 – 4,019 | 2 Bedrooms $3,309 – 11,990"
+    },
+    {
+      "Name": "The Duke Nashville",
       "Area": "Germantown",
       "ApplicationFee": 50,
-      "AdminFee": 200,
-      "PetFee": 375,
+      "AdminFee": 250,
+      "PetFee": 350,
       "MiscFees": 0,
-      "AvgRent": "1 Bedroom $1,265 – 2,420 | 2 Bedrooms $1,795 – 2,577"
+      "AvgRent": "Studio $1,170 – 1,425 | 1 Bedroom $1,310 – 1,540 | 2 Bedrooms $1,615 – 1,960"
     },
+    {
+      "Name": "Residences at Aertson Midtown",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 200,
+      "PetFee": 300,
+      "MiscFees": 250,
+      "AvgRent": "Studio $1,530 – 2,413 | 1 Bedroom $1,575 – 2,981 | 2 Bedrooms $2,691 – 4,624"
+    },
+    {
+      "Name": "Village 21 Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,520 – 1,790 | 1 Bedroom $1,580 – 2,224 | 2 Bedrooms $2,330 – 2,640"
+    },
+    {
+      "Name": "The Cadence",
+      "Area": "Midtown",
+      "ApplicationFee": 75,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,430 – 1,603 1 Bedroom $1,515 – 2,425 2 Bedrooms $2,354 – 2,679"
+    },
+    {
+      "Name": "The Cleo East Nashville",
+      "Area": "East Nashville",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,265 | 1 Bedroom $1,395 – 1,585 | 2 Bedrooms $1,795 – 2,395"
+    },
+    {
+      "Name": "Melrose Apartments",
+      "Area": "Melrose-Waverly",
+      "ApplicationFee": 75,
+      "AdminFee": 200,
+      "PetFee": 350,
+      "MiscFees": 50,
+      "AvgRent": "1 Bedroom $1,380 – 2,240 2 Bedrooms $1,805 – 2,370"
+    },
+    {
+      "Name": "The Monroe",
+      "Area": "Germantown",
+      "ApplicationFee": 75,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,350 – 1,965 | 2 Bedrooms $2,175 – 2,785"
+    },
+    {
+      "Name": "Element Music Row",
+      "Area": "Midtown",
+      "ApplicationFee": 60,
+      "AdminFee": 200,
+      "PetFee": 0,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,490 – 1,930 | 1 Bedroom $1,733 – 2,699 | 2 Bedrooms $2,583 – 7,444 "
+    },
+    {
+      "Name": "Broadstone Germantown",
+      "Area": "Germantown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 100,
+      "AvgRent": "Studio $1,379 | 1 Bedroom $1,394 – 2,109 | 2 Bedrooms $2,174 – 4,200"
+    },
+    {
+      "Name": "Peyton Stakes",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 175,
+      "PetFee": 0,
+      "MiscFees": 0,
+      "AvgRent": "1 Bedroom $1,466 – 2,049 | 2 Bedrooms $2,276 – 2,650"
+    },
+    {
+      "Name": "SkyHouse Nashville",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 175,
+      "PetFee": 300,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,610 – 2,360 | 1 Bedroom $1,635 – 3,070 | 2 Bedrooms $2,580 – 3,200"
+    },
+    {
+      "Name": "Acklen West End",
+      "Area": "West End",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,248 – 1,958 | 1 Bedroom $1,383 – 2,388 | 2 Bedrooms $1,853 – 3,073"
+    },
+    {
+      "Name": "2700 Charlotte Ave Apartments",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,475 – 2,245 | 1 Bedroom $1,430 – 2,650 | 2 Bedrooms $2,125 – 3,755"
+    },
+    {
+      "Name": "The Dallas on Elliston",
+      "Area": "Midtown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 50,
+      "AvgRent": "1 Bedroom $1,480 – 2,335 | 2 Bedrooms $1,899 – 2,605"
+    }
+
 
 
   ] //END APARTMENTS
