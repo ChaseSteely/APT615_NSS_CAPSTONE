@@ -1,25 +1,11 @@
 ﻿$('#getIndexMap').click(function () {
-    
-        $.ajax({
-            url: "../js/apartment.json",
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                let apartment = data.buildings
-                apartment.forEach((a, index) => {
-                    console.log(a)
-                })
-                
-            }//END SUCCESS
-        })
-    
     let targetOffset = $('#map').offset().top;
     $('html, body').animate({ scrollTop: targetOffset }, 1000);
     initMap();
 });
 
-function initMap() {
-    var styledMapType = new google.maps.StyledMapType(
+const initMap = () => {
+    const styledMapType = new google.maps.StyledMapType(
         [
             {
                 "featureType": "administrative.locality",
@@ -257,7 +243,7 @@ function initMap() {
             }
         ],
         { name: 'Styled Map' });
-    let log = '<a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>';
+
     let uluru = { lat: 36.174465, lng: -86.767960 };
     let infoWindow;
     let marker;
@@ -278,55 +264,41 @@ function initMap() {
         }
     });
 
-    let request = {
-        location: uluru,
-        radius: '6000',
-        query: 'nashville apartments'
-    };
-
-    var getNextPage = null;
-    var moreButton = document.getElementById('more');
-    moreButton.onclick = function () {
-        moreButton.disabled = true;
-        if (getNextPage) getNextPage();
-    };
-
     infowindow = new google.maps.InfoWindow();
-    let service = new google.maps.places.PlacesService(map);
-    service.textSearch(request, callback);
 
-    function callback(results, status, pagination) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            results.forEach(result => {
-                let place = result;
-                createMarker(result);
-            });
-            moreButton.disabled = !pagination.hasNextPage;
-            getNextPage = pagination.hasNextPage && function () {
-                pagination.nextPage();
-            };
-        }
+    $.ajax({
+        url: "../js/apartment.json",
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            let apartments = data.apts
+            apartments.forEach(apt => {
+                createMarker(apt);
+            })
+
+        }//END SUCCESS
+    })
+
+    function createMarker(place) {
+        let login = '<a class="nav-link" href="/Account/Login">Log in</a>';
+        let track = '<a id="apartmentsNav" class="nav-link" href="/Apartments/Track">Track</a>'
+        let markerLocation = { lat: place.lat, lng: place.lng };
+        let marker = new google.maps.Marker({
+            icon: markerIcon,
+            position: markerLocation,
+            animation: google.maps.Animation.DROP,
+            map: map
+        });
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.setContent('<div id="content" class"content-center">' +
+                '<p class="text-center">' + login + ' or ' + track +'</p>' +
+                '<p class="text-center"><strong>' + place.name + '<strong></p>' +
+                '<p class="text-center">' + place.rentSummary + '</p>' +
+               '</div>');
+            infowindow.open(map, this);
+        });
     }
 
-  
-    function createMarker(place) {
-       
-        var contentString = '<a class="nav-link text-center" href="/Account/Login" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>';
-           
-            let placeLoc = place.geometry.location;
-            let marker = new google.maps.Marker({
-                icon: markerIcon,
-                position: place.geometry.location,
-                animation: google.maps.Animation.DROP,
-                map: map
-            });
-        google.maps.event.addListener(marker, 'click', function () {
-            infowindow.setContent('<div id="content"><strong>' + place.name + '<strong><br>' +
-                contentString + '</div>');
-                infowindow.open(map, this);
-            });
-        }
-   
     //Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set('styled_map', styledMapType);
     map.setMapTypeId('styled_map');

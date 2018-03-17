@@ -298,8 +298,6 @@
     
     function createMarker(place) {
 
-        var contentString = '<a class="nav-link text-center" href="/Account/Login" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>';
-
         // Create a marker for each place.
         let marker = new google.maps.Marker({
             icon: icon,

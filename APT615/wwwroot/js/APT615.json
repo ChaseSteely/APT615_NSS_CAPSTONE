@@ -459,6 +459,42 @@
       "PetFee": 350,
       "MiscFees": 50,
       "AvgRent": "1 Bedroom $1,480 – 2,335 | 2 Bedrooms $1,899 – 2,605"
+    },
+    {
+      "Name": "Cumberland on Church",
+      "Area": "Downtown",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 0,
+      "MiscFees": 75,
+      "AvgRent": "1 Bedroom $1,307 – 2,609 | 2 Bedrooms $2,161 – 4,538"
+    },
+    {
+      "Name": "Eastside Heights",
+      "Area": "East Nashville",
+      "ApplicationFee": 50,
+      "AdminFee": 150,
+      "PetFee": 0,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,225 – 1,275 | 1 Bedroom $1,365 – 1,835 | 2 Bedrooms $1,999 – 2,475"
+    },
+    {
+      "Name": "Chelsea Apartments",
+      "Area": "Melrose-Waverly",
+      "ApplicationFee": 50,
+      "AdminFee": 250,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,400 – 1,750 | 1 Bedroom $1,625 – 1,775 | 2 Bedrooms $2,400 – 2,600"
+    },
+    {
+      "Name": "West End Village Apartments",
+      "Area": "West End",
+      "ApplicationFee": 60,
+      "AdminFee": 350,
+      "PetFee": 350,
+      "MiscFees": 0,
+      "AvgRent": "Studio $1,313 – 1,464 | 1 Bedroom $1,346 – 1,865 | 2 Bedrooms $1,822 – 2,200"
     }
 
 
