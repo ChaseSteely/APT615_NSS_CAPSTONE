@@ -11,16 +11,17 @@ using System;
 namespace APT615.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180311174430_PleaseWork")]
-    partial class PleaseWork
+    [Migration("20180318184242_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("APT615.Models.Aminity", b =>
+            modelBuilder.Entity("APT615.Models.Amenity", b =>
                 {
                     b.Property<int>("AmenityId")
                         .ValueGeneratedOnAdd();
@@ -168,7 +169,8 @@ namespace APT615.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -191,7 +193,8 @@ namespace APT615.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -290,7 +293,7 @@ namespace APT615.Migrations
 
             modelBuilder.Entity("APT615.Models.ApartmentAmenity", b =>
                 {
-                    b.HasOne("APT615.Models.Aminity", "Aminity")
+                    b.HasOne("APT615.Models.Amenity", "Amenity")
                         .WithMany("ApartmentAmenities")
                         .HasForeignKey("AmenityId");
 
