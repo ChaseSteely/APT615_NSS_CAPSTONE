@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-APT615-71C843EB-9B5F-4C5B-BBA0-3A4F0CED9F49</UserSecretsId>
+    <StartupObject>APT615.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
