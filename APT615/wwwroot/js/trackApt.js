@@ -250,6 +250,7 @@
     const map = new google.maps.Map(document.getElementById('trackMap'), {
         center: nashville,
         zoom: 12,
+        zoomControl: false,
         mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                 'styled_map']
@@ -277,27 +278,80 @@
         let bounds = new google.maps.LatLngBounds();
         places.forEach(function (place) {
             if (!place.geometry) {
+                alert("No details available for input: '" + place.name + "'");
                 console.log("Returned place contains no geometry");
                 return;
             }
 
             infowindow = new google.maps.InfoWindow();
 
-            createMarker(place)
-            
+            $.ajax({
+                url: "../js/APT615.json",
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    let apts = data.apartments
+                    apts.forEach(apt => {
+                        if (place.name.includes(apt.Name)) {
+                            console.log(apt.Name, place.name)
+                            $('#Area').val(apt.Area);
+                            $('#ApplicationFee').val(apt.ApplicationFee);
+                            $('#PetFee').val(apt.PetFee);
+                            $('#MiscFees').val(apt.MiscFees);
+                            $('#AdminFee').val(apt.AdminFee);
+                        } 
+                        $('#Name').val(place.name);
+                     
+                        let streetNum = [];
+                        let streetAddress = [];
+                        let address = [];
+
+                        for (var i = 0; i < place.address_components.length; i++) {
+                            let addressType = place.address_components[i].types[0];
+                            if (addressType === "street_number" ) {
+                                streetNum = [(place.address_components[i].short_name)]
+                            }
+                            if (addressType === "route") {
+                                streetAddress = [(place.address_components[i].short_name)]
+                            }
+                            address = [(streetNum), (streetAddress)].join(' ');
+
+                            $('#Street').val(address);
+
+                            if (addressType === "locality") {
+                                $('#City').val(place.address_components[i].short_name);
+                            }
+                            if (addressType === "administrative_area_level_1") {
+                                $('#State').val(place.address_components[i].short_name);
+                            }
+                            if (addressType === "postal_code") {
+                                $('#ZipCode').val(place.address_components[i].short_name);
+                            }
+                        }
+                        $('#Latitude').val(place.geometry.location.lat);
+                        $('#Longitude').val(place.geometry.location.lng);
+                        $('#Website').val(place.website);
+                        createMarker(place, apt);
+                       
+                    })
+                }//END SUCCESS
+            })
+
+            let targetOffset = $('#trackMap').offset().top;
+            $('html, body').animate({ scrollTop: targetOffset }, 1000);
+
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
             } else {
                 bounds.extend(place.geometry.location);
             }
-           
         });
         map.fitBounds(bounds);
     });
-    
-    function createMarker(place) {
 
+
+    function createMarker(place, apt) {
         // Create a marker for each place.
         let marker = new google.maps.Marker({
             icon: icon,
@@ -306,14 +360,18 @@
             map: map
         });
 
-        let targetOffset = $('#trackMap').offset().top;
-        $('html, body').animate({ scrollTop: targetOffset }, 1000);
-
         google.maps.event.addListener(marker, 'click', function () {
-            infowindow.setContent('<div id="content"><strong>' + place.name + '<strong><br>');
+            infowindow.setContent(
+                '<div id="content" class"content-center">' +
+                '<p class="text-center"><strong>' + place.name + '<strong></p>' +
+                '<p class="text-center">' + place.formatted_address + '</p>' +
+                `<p class="text-center"><a href="${place.website}" target="_blank">Visit Their Website</a></p>` +
+                '<p class="text-center">' + apt.AvgRent + '</p>' +
+                '</div>'
+            );
             infowindow.open(map, this);
         });
-
+        return;
     }
 
     //Associate the styled map with the MapTypeId and set it to display.

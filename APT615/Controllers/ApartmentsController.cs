@@ -65,8 +65,10 @@ namespace APT615.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Track([Bind("ApartmentId,Name,Area,Rent,ApplicationFee,PetFee,MiscFees,AdminFee,DateAdded,Note,Bedrooms,Bathrooms,SqFt,Street,City,State,ZipCode,Latitude,Longitude,Website,PhotoUrl,Favorited,Visited")] Apartment apartment)
         {
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
+                apartment.User = await _userManager.GetUserAsync(HttpContext.User);
                 _context.Add(apartment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

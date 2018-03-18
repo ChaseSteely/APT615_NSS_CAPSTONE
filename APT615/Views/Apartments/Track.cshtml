@@ -1,5 +1,5 @@
 ﻿@inject APT615.Services.IApplicationConfiguration AppSettings;
-@model APT615.Models.ApartmentViewModels.Track.TrackViewModel
+@model APT615.Models.Apartment
 
 @{
     ViewData["Title"] = "Track";
@@ -30,25 +30,25 @@
                     <div class="col-md-10 ml-auto mr-auto">
                         <div class="card card-raised card-form-horizontal card-plain" data-background-color>
                             <div class="card-body">
-                                <form asp-action="Create" class="form">
+                                <form asp-action="Track" class="form">
                                     <div class="row">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class=" col-md-6">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.Name" class="form-control" placeholder="apartment name" />
-                                                <span asp-validation-for="@Model.Apartment.Name" class="text-danger"></span>
+                                                <input asp-for="Name" class="form-control" placeholder="apartment name" />
+                                                <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.Area" class="form-control" placeholder="neighborhood or area of town" />
-                                                <span asp-validation-for="@Model.Apartment.Area" class="text-danger"></span>
+                                                <input asp-for="Area" class="form-control" placeholder="neighborhood or area of town" />
+                                                <span asp-validation-for="Area" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.Rent" class="form-control" placeholder="$ rent" />
-                                                <span asp-validation-for="@Model.Apartment.Rent" class="text-danger"></span>
+                                                <input asp-for="Rent" class="form-control" placeholder="$ rent" />
+                                                <span asp-validation-for="Rent" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>@*END FORM ROW*@
@@ -56,33 +56,29 @@
                                     <div class="row">
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.ApplicationFee" class="form-control" placeholder="$ application fee" />
-                                                <span asp-validation-for="@Model.Apartment.ApplicationFee" class="text-danger"></span>
+                                                <input asp-for="ApplicationFee" class="form-control" placeholder="$ application fee" />
+                                                <span asp-validation-for="ApplicationFee" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.PetFee" class="form-control" placeholder="$ pet fee" />
-                                                <span asp-validation-for="@Model.Apartment.PetFee" class="text-danger"></span>
+                                                <input asp-for="AdminFee" class="form-control" placeholder="$ admin fee" />
+                                                <span asp-validation-for="AdminFee" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.MiscFees" class="form-control" placeholder="$ misc monthly fees" />
-                                                <span asp-validation-for="@Model.Apartment.MiscFees" class="text-danger"></span>
+                                                <input asp-for="PetFee" class="form-control" placeholder="$ pet fee" />
+                                                <span asp-validation-for="PetFee" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.AdminFee" class="form-control" placeholder="$ admin fee" />
-                                                <span asp-validation-for="@Model.Apartment.AdminFee" class="text-danger"></span>
+                                                <input asp-for="MiscFees" class="form-control" placeholder="$ monthly fees ex: parking " />
+                                                <span asp-validation-for="MiscFees" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>@*END FORM ROW*@
-                                    <div class="form-group input">
-                                        <input asp-for="@Model.Apartment.Note" class="form-control" placeholder="notes" />
-                                        <span asp-validation-for="@Model.Apartment.Note" class="text-danger"></span>
-                                    </div>
                                     <div class="row">
                                         <div class=" col-md-3">
                                             <div class="form-group input">
@@ -94,7 +90,7 @@
                                                     <option value="3">3</option>
                                                     <option value="4">4</option>
                                                 </select>
-                                                <span asp-validation-for="@Model.Apartment.Bedrooms" class="text-danger"></span>
+                                                <span asp-validation-for="Bedrooms" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
@@ -105,13 +101,13 @@
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
                                                 </select>
-                                                <span asp-validation-for="@Model.Apartment.Bathrooms" class="text-danger"></span>
+                                                <span asp-validation-for="Bathrooms" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.SqFt" class="form-control" placeholder="sqft" />
-                                                <span asp-validation-for="@Model.Apartment.SqFt" class="text-danger"></span>
+                                                <input asp-for="SqFt" class="form-control" placeholder="sqft" />
+                                                <span asp-validation-for="SqFt" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>@*END FORM ROW*@
@@ -119,26 +115,26 @@
                                     <div class="row">
                                         <div class=" col-md-4">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.Street" class="form-control" placeholder="street address" />
-                                                <span asp-validation-for="@Model.Apartment.Street" class="text-danger"></span>
+                                                <input asp-for="Street" class="form-control" placeholder="street address" />
+                                                <span asp-validation-for="Street" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.City" class="form-control" placeholder="city" />
-                                                <span asp-validation-for="@Model.Apartment.City" class="text-danger"></span>
+                                                <input asp-for="City" class="form-control" placeholder="city" />
+                                                <span asp-validation-for="City" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-2">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.State" class="form-control" placeholder="state" />
-                                                <span asp-validation-for="@Model.Apartment.State" class="text-danger"></span>
+                                                <input asp-for="State" class="form-control" placeholder="state" />
+                                                <span asp-validation-for="State" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.ZipCode" class="form-control" placeholder="zipcode" />
-                                                <span asp-validation-for="@Model.Apartment.ZipCode" class="text-danger"></span>
+                                                <input asp-for="ZipCode" class="form-control" placeholder="zipcode" />
+                                                <span asp-validation-for="ZipCode" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>@*END FORM ROW*@
@@ -146,28 +142,32 @@
                                     <div class="row">
                                         <div class=" col-md-2">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.Latitude" class="form-control" placeholder="latitude" />
-                                                <span asp-validation-for="@Model.Apartment.Latitude" class="text-danger"></span>
+                                                <input asp-for="Latitude" class="form-control" placeholder="latitude" />
+                                                <span asp-validation-for="Latitude" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-2">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.Longitude" class="form-control" placeholder="longitude" />
-                                                <span asp-validation-for="@Model.Apartment.Longitude" class="text-danger"></span>
+                                                <input asp-for="Longitude" class="form-control" placeholder="longitude" />
+                                                <span asp-validation-for="Longitude" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-4">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.Website" class="form-control" placeholder="website" />
-                                                <span asp-validation-for="@Model.Apartment.Website" class="text-danger"></span>
+                                                <input asp-for="Website" class="form-control" placeholder="website" />
+                                                <span asp-validation-for="Website" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-4">
                                             <div class="form-group input">
-                                                <input asp-for="@Model.Apartment.PhotoUrl" class="form-control" placeholder="photo url" />
-                                                <span asp-validation-for="@Model.Apartment.PhotoUrl" class="text-danger"></span>
+                                                <input asp-for="PhotoUrl" class="form-control" placeholder="photo url" />
+                                                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group input">
+                                        <input asp-for="Note" class="form-control" placeholder="notes" />
+                                        <span asp-validation-for="Note" class="text-danger"></span>
                                     </div>
                                     <div class="card-footer text-center">
                                         <button type="submit" class="btn btn-primary btn-round btn-sm btn-block brand">+ Apartment</button>
