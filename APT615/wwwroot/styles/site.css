@@ -1,9 +1,4 @@
-﻿input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
-    opacity: .0;
-}
-
-
+﻿
 .brand {
     font-family: 'Megrim', cursive;
     font-size: 2em !important;
