@@ -9,6 +9,7 @@ using APT615.Data;
 using APT615.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
+using APT615.Models.ApartmentViewModels.Track;
 
 namespace APT615.Controllers
 {
@@ -31,7 +32,14 @@ namespace APT615.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            return View(await _context.Apartments.ToListAsync());
+            var AllApartments = await _context.Apartments
+                .Where(m => m.User == user).ToListAsync();
+                if (AllApartments == null)
+            {
+                return NotFound();
+            }
+
+            return View(AllApartments);
         }
 
         // GET: Apartments/Details/5
@@ -52,7 +60,7 @@ namespace APT615.Controllers
             return View(apartment);
         }
 
-        // GET: Apartments/Create
+        // GET: Apartments/Track
         public IActionResult Track()
         {
             return View();

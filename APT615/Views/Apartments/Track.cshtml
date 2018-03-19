@@ -1,6 +1,7 @@
 ﻿@inject APT615.Services.IApplicationConfiguration AppSettings;
 @model APT615.Models.Apartment
 
+
 @{
     ViewData["Title"] = "Track";
 }
@@ -169,6 +170,7 @@
                                         <input asp-for="Note" class="form-control" placeholder="notes" />
                                         <span asp-validation-for="Note" class="text-danger"></span>
                                     </div>
+                                    
                                     <div class="card-footer text-center">
                                         <button type="submit" class="btn btn-primary btn-round btn-sm btn-block brand">+ Apartment</button>
                                     </div>
