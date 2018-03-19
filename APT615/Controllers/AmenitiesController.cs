@@ -7,22 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APT615.Data;
 using APT615.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace APT615.Controllers
 {
     public class AmenitiesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private IHostingEnvironment _hostingEnvironment;
 
-        public AmenitiesController(ApplicationDbContext context)
+        public AmenitiesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IHostingEnvironment environment)
         {
             _context = context;
+            _userManager = userManager;
+            _hostingEnvironment = environment;
         }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Amenities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Amenities.ToListAsync());
+            var user = await GetCurrentUserAsync();
+            var AllAmeneties = await _context.Amenities
+               .Where(a => a.User == user).ToListAsync();
+            if (AllAmeneties == null)
+            {
+                return NotFound();
+            }
+
+            return View(AllAmeneties);
         }
 
         // GET: Amenities/Details/5
@@ -56,14 +71,17 @@ namespace APT615.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AmenityId,Type")] Amenity amenity)
         {
+            ModelState.Remove("User");
             if (ModelState.IsValid)
             {
+                amenity.User = await _userManager.GetUserAsync(HttpContext.User);
                 _context.Add(amenity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(amenity);
         }
+
 
         // GET: Amenities/Edit/5
         public async Task<IActionResult> Edit(int? id)

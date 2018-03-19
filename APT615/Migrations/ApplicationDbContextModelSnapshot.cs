@@ -29,7 +29,12 @@ namespace APT615.Migrations
                         .IsRequired()
                         .HasMaxLength(55);
 
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
                     b.HasKey("AmenityId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Amenity");
                 });
@@ -280,6 +285,14 @@ namespace APT615.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("APT615.Models.Amenity", b =>
+                {
+                    b.HasOne("APT615.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("APT615.Models.Apartment", b =>

@@ -10,19 +10,6 @@ namespace APT615.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Amenity",
-                columns: table => new
-                {
-                    AmenityId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(maxLength: 55, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Amenity", x => x.AmenityId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -80,6 +67,26 @@ namespace APT615.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Amenity",
+                columns: table => new
+                {
+                    AmenityId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Type = table.Column<string>(maxLength: 55, nullable: false),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Amenity", x => x.AmenityId);
+                    table.ForeignKey(
+                        name: "FK_Amenity_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -235,6 +242,11 @@ namespace APT615.Migrations
                         principalColumn: "ApartmentId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Amenity_UserId",
+                table: "Amenity",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Apartment_UserId",
