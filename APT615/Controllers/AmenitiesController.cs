@@ -30,14 +30,14 @@ namespace APT615.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            var AllAmeneties = await _context.Amenities
+            var UserAmenities = await _context.Amenities
                .Where(a => a.User == user).ToListAsync();
-            if (AllAmeneties == null)
+            if (UserAmenities == null)
             {
                 return NotFound();
             }
 
-            return View(AllAmeneties);
+            return View(UserAmenities);
         }
 
         // GET: Amenities/Details/5
@@ -75,13 +75,20 @@ namespace APT615.Controllers
             if (ModelState.IsValid)
             {
                 amenity.User = await _userManager.GetUserAsync(HttpContext.User);
+                var user = await GetCurrentUserAsync();
+                var isDuplicate = await _context.Amenities
+                   .SingleOrDefaultAsync(a => a.User == user && a.Type == amenity.Type);
+                if (isDuplicate != null)
+                {
+                    ViewData["Message"] = "You Have Already Added This Amenity.";
+                    return View(amenity);
+                }
                 _context.Add(amenity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(amenity);
         }
-
 
         // GET: Amenities/Edit/5
         public async Task<IActionResult> Edit(int? id)
