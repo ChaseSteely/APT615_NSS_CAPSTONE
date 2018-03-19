@@ -10,6 +10,11 @@ appsettings.json
 *.scss
 sass/*
 
+*.bootstrap-switch.js
+*.bootstrap-tagsinput.js
+*.jasny-bootstrap.min.js
+*.nouislider.min.js
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
