@@ -10,55 +10,57 @@
 }
 
 <div class="login-page">
-    <div class="page-header" filter-color="orange">
-        <div class="page-header-image" style="background-image:url('../images/downtown.jpg')"></div>
-        <div class="content">
-            <div class="container">
-                <div class="col-md-5 ml-auto mr-auto">
-                    <div class="card card-login card-plain">
-                        <form asp-route-returnurl="@ViewData["ReturnUrl"]" class="form" method="post" auto-complete="something-new">
-                            <div id="loginLogo" class="card-header text-center">
-                                <h2 class="brand" id="loginLogo">WELCOME TO APT615</h2>
-                            </div>
-                            <div class="card-body">
-                                <div asp-validation-summary="All" class="text-danger"></div>
-                                <div class="input-group form-group-no-border input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
+    <div class="wrapper">
+        <div class="page-header" filter-color="orange">
+            <div class="page-header-image" style="background-image:url('../images/downtown.jpg')"></div>
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 ml-auto mr-auto text-center">
+                            <h2 class="brand" id="loginLogo">WELCOME TO APT615</h2>
+                            <div class="card card-login card-plain">
+                                <form asp-route-returnurl="@ViewData["ReturnUrl"]" class="form" method="post" auto-complete="something-new">
+                                    <div class="card-body">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="input-group form-group-no-border input-lg">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
+                                            </div>
+                                            <input asp-for="Email" class="form-control" placeholder="email" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="input-group form-group-no-border input-lg">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                                            </div>
+                                            <input asp-for="Password" class="form-control" placeholder="password" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="input-group form-group-no-border">
+                                            <div class="checkbox">
+                                                <label asp-for="RememberMe">
+                                                    <input asp-for="RememberMe" />
+                                                    @Html.DisplayNameFor(m => m.RememberMe)
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <input asp-for="Email" class="form-control" placeholder="email" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-                                <div class="input-group form-group-no-border input-lg">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                                    <div class="card-footer text-center">
+                                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block brand">Log in</button>
                                     </div>
-                                    <input asp-for="Password" class="form-control" placeholder="password" />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                                <div class="input-group form-group-no-border">
-                                    <div class="checkbox">
-                                        <label asp-for="RememberMe">
-                                            <input asp-for="RememberMe" />
-                                            @Html.DisplayNameFor(m => m.RememberMe)
-                                        </label>
+                                    <div class="pull-left">
+                                        <p>
+                                            <a asp-action="ForgotPassword" class="link footer-link">Forgot your password?</a>
+                                        </p>
                                     </div>
-                                </div>
+                                    <div class="pull-right">
+                                        <p>
+                                            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="link footer-link">Register as a new user?</a>
+                                        </p>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="card-footer text-center">
-                                <button type="submit" class="btn btn-primary btn-round btn-lg btn-block brand">Log in</button>
-                            </div>
-                            <div class="pull-left">
-                                <p>
-                                    <a asp-action="ForgotPassword" class="link footer-link">Forgot your password?</a>
-                                </p>
-                            </div>
-                            <div class="pull-right">
-                                <p>
-                                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="link footer-link">Register as a new user?</a>
-                                </p>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

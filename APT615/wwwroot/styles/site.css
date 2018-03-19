@@ -6,32 +6,25 @@
 
 .brand {
     font-family: 'Megrim', cursive;
-    font-size: 2em !important;
 }
 
-
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .carousel-item img[src$=".svg"] {
-    width: 100%;
+#homeLogo, #getIndexMap, #amenityBtn, #addAptBtn {
+    font-size: 2em;
 }
 
 #loginImg {
-    background-image:url('../images/downtown.jpg') !important;
+    background-image: url('../images/downtown.jpg') !important;
 }
 
 #loginLogo {
     z-index: 1 !important;
     color: white !important;
+    padding-top: 50px;
 }
 
 #homeIntroP {
-    font-size: 1.5em;
+    font-size: 1.8em;
+    padding-top: 50px;
 }
 
 #mapLogin {
@@ -47,11 +40,11 @@
 }
 
 option {
+    font-weight: bold !important;
     color: #fa7a50 !important;
 }
 
 #apartmentSearch {
-    font-size: 1.5em !important;
     border-color: #fa7a50 !important;
     border-width: 2px !important;
 }
@@ -68,8 +61,12 @@ option {
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
+ 
+
+}
+
+@media screen and (max-width: 420px) {
+    #homeIntroP {
+        font-size: 1.2em;
     }
 }

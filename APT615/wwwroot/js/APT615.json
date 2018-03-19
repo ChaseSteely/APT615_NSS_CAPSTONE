@@ -323,7 +323,7 @@
       "AdminFee": 250,
       "PetFee": 350,
       "MiscFees": 0,
-      "AvgRent": "Studio $1,315 – 1,471 1 Bedroom $1,505 – 1,950 2 Bedrooms $2,278 – 2,880"
+      "AvgRent": "Studio $1,315 – 1,471 | 1 Bedroom $1,505 – 1,950 | 2 Bedrooms $2,278 – 2,880"
     },
     {
       "Name": "Vertis Green Hills",
@@ -368,7 +368,7 @@
       "AdminFee": 250,
       "PetFee": 350,
       "MiscFees": 0,
-      "AvgRent": "Studio $1,430 – 1,603 1 Bedroom $1,515 – 2,425 2 Bedrooms $2,354 – 2,679"
+      "AvgRent": "Studio $1,430 – 1,603 | 1 Bedroom $1,515 – 2,425 | 2 Bedrooms $2,354 – 2,679"
     },
     {
       "Name": "Cleo East Nashville",
@@ -386,7 +386,7 @@
       "AdminFee": 200,
       "PetFee": 350,
       "MiscFees": 50,
-      "AvgRent": "1 Bedroom $1,380 – 2,240 2 Bedrooms $1,805 – 2,370"
+      "AvgRent": "1 Bedroom $1,380 – 2,240 | 2 Bedrooms $1,805 – 2,370"
     },
     {
       "Name": "Monroe",

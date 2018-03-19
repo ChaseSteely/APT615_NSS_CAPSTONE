@@ -244,7 +244,7 @@ const initMap = () => {
         ],
         { name: 'Styled Map' });
 
-    let uluru = { lat: 36.174465, lng: -86.767960 };
+    let uluru = { lat: 36.16113, lng: -86.78578 };
     let infoWindow;
     let marker;
     let markerIcon = {
@@ -258,10 +258,7 @@ const initMap = () => {
     let map = new google.maps.Map(document.getElementById('map'), {
         center: uluru,
         zoom: 12,
-        mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-                'styled_map']
-        }
+        disableDefaultUI: true
     });
 
     infowindow = new google.maps.InfoWindow();

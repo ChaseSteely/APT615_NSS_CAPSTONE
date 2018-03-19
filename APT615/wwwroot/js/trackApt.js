@@ -238,7 +238,7 @@
         ],
         { name: 'Styled Map' });//END STYLED MAP
 
-    const nashville = { lat: 36.174465, lng: -86.767960 };
+    const nashville = { lat: 36.16113, lng: -86.78578 };
     let infoWindow;
     let marker;
     let icon = {
@@ -251,10 +251,7 @@
         center: nashville,
         zoom: 12,
         zoomControl: false,
-        mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-                'styled_map']
-        }//END MAP CONTROL OPTIONS
+        disableDefaultUI: true
     });//END map variable
 
     const input = document.getElementById('apartmentSearch');
@@ -283,7 +280,9 @@
                 return;
             }
 
-            infowindow = new google.maps.InfoWindow();
+            infowindow = new google.maps.InfoWindow({
+                maxWidth: 300
+            });
 
             $.ajax({
                 url: "../js/APT615.json",
@@ -366,7 +365,7 @@
                 '<p class="text-center"><strong>' + place.name + '<strong></p>' +
                 '<p class="text-center">' + place.formatted_address + '</p>' +
                 `<p class="text-center"><a href="${place.website}" target="_blank">Visit Their Website</a></p>` +
-                '<p class="text-center">' + apt.AvgRent + '</p>' +
+                '<h6 class="text-center">' + apt.AvgRent + '</h6>' +
                 '</div>'
             );
             infowindow.open(map, this);

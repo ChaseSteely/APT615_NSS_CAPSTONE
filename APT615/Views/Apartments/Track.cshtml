@@ -14,9 +14,11 @@
                 <div class="col-md-12 ml-auto">
                     <div class="card card-login card-plain">
                         <div class="card-body">
-                            <div class="input-group form-group-lg input-lg rellax">
-                                <input id="apartmentSearch" type="text" class="form-control text-center controls" placeholder="enter an apartment to track" />
-                            </div>
+                            <form class="form">
+                                <div class="form-group input-lg rellax">
+                                    <input id="apartmentSearch" type="text" class="form-control form-control-lg text-center controls" placeholder="enter an apartment to track" />
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -36,19 +38,22 @@
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class=" col-md-6">
                                             <div class="form-group input">
-                                                <input asp-for="Name" class="form-control" placeholder="apartment name" />
+                                                <label asp-for="Name" class="control-label">Apartment Name</label>
+                                                <input asp-for="Name" class="form-control" placeholder="e.g. Octave" />
                                                 <span asp-validation-for="Name" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="Area" class="form-control" placeholder="neighborhood or area of town" />
+                                                <label asp-for="Area" class="control-label">Neighborhood</label>
+                                                <input asp-for="Area" class="form-control" placeholder="e.g. Midtown" />
                                                 <span asp-validation-for="Area" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="Rent" class="form-control" placeholder="$ rent" />
+                                                <label asp-for="Rent" class="control-label">Monthly Rent</label>
+                                                <input asp-for="Rent" class="form-control" placeholder="e.g. 1500" />
                                                 <span asp-validation-for="Rent" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -57,25 +62,29 @@
                                     <div class="row">
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="ApplicationFee" class="form-control" placeholder="$ application fee" />
+                                                <label asp-for="ApplicationFee" class="control-label">Application Fee</label>
+                                                <input asp-for="ApplicationFee" class="form-control" placeholder="e.g. 50" />
                                                 <span asp-validation-for="ApplicationFee" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="AdminFee" class="form-control" placeholder="$ admin fee" />
+                                                <label asp-for="AdminFee" class="control-label">Admin Fee</label>
+                                                <input asp-for="AdminFee" class="form-control" placeholder="e.g. 250" />
                                                 <span asp-validation-for="AdminFee" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="PetFee" class="form-control" placeholder="$ pet fee" />
+                                                <label asp-for="PetFee" class="control-label">Pet Fee</label>
+                                                <input asp-for="PetFee" class="form-control" placeholder="e.g. 300" />
                                                 <span asp-validation-for="PetFee" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="MiscFees" class="form-control" placeholder="$ monthly fees ex: parking " />
+                                                <label asp-for="MiscFees" class="control-label">Monthly Fees (e.g. Parking)</label>
+                                                <input asp-for="MiscFees" class="form-control" placeholder="e.g. 75" />
                                                 <span asp-validation-for="MiscFees" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -83,6 +92,7 @@
                                     <div class="row">
                                         <div class=" col-md-3">
                                             <div class="form-group input">
+                                                <label asp-for="Bedrooms" class="control-label"># of Bedrooms</label>
                                                 <select class="form-control select" placeholder="# of bedrooms" type="number" data-val="true" data-val-required="The Bedrooms field is required." id="Bedrooms" name="Bedrooms" value="">
                                                     <option selected hidden># of bedrooms</option>
                                                     <option value="0">Studio</option>
@@ -96,6 +106,7 @@
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
+                                                <label asp-for="Bathrooms" class="control-label"># Bathrooms</label>
                                                 <select class="form-control" type="number" data-val="true" data-val-required="The Bathrooms field is required." id="Bathrooms" name="Bathrooms" value="">
                                                     <option selected hidden># of bathrooms</option>
                                                     <option value="1">1</option>
@@ -107,7 +118,8 @@
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="SqFt" class="form-control" placeholder="sqft" />
+                                                <label asp-for="SqFt" class="control-label">Square Feet</label>
+                                                <input asp-for="SqFt" class="form-control" placeholder="e.g. 720" />
                                                 <span asp-validation-for="SqFt" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -116,25 +128,29 @@
                                     <div class="row">
                                         <div class=" col-md-4">
                                             <div class="form-group input">
-                                                <input asp-for="Street" class="form-control" placeholder="street address" />
+                                                <label asp-for="Street" class="control-label">Street Address</label>
+                                                <input asp-for="Street" class="form-control" placeholder="e.g. 123 Main St" />
                                                 <span asp-validation-for="Street" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="City" class="form-control" placeholder="city" />
+                                                <label asp-for="City" class="control-label"></label>
+                                                <input asp-for="City" class="form-control" placeholder="e.g. Nashville" />
                                                 <span asp-validation-for="City" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-2">
                                             <div class="form-group input">
-                                                <input asp-for="State" class="form-control" placeholder="state" />
+                                                <label asp-for="State" class="control-label"></label>
+                                                <input asp-for="State" class="form-control" placeholder="e.g. TN" />
                                                 <span asp-validation-for="State" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-3">
                                             <div class="form-group input">
-                                                <input asp-for="ZipCode" class="form-control" placeholder="zipcode" />
+                                                <label asp-for="ZipCode" class="control-label">Zip Code</label>
+                                                <input asp-for="ZipCode" class="form-control" placeholder="e.g. 37027" />
                                                 <span asp-validation-for="ZipCode" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -143,36 +159,34 @@
                                     <div class="row">
                                         <div class=" col-md-2">
                                             <div class="form-group input">
+                                                <label asp-for="Latitude" class="control-label"></label>
                                                 <input asp-for="Latitude" class="form-control" placeholder="latitude" />
                                                 <span asp-validation-for="Latitude" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-2">
                                             <div class="form-group input">
+                                                <label asp-for="Longitude" class="control-label"></label>
                                                 <input asp-for="Longitude" class="form-control" placeholder="longitude" />
                                                 <span asp-validation-for="Longitude" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class=" col-md-4">
                                             <div class="form-group input">
-                                                <input asp-for="Website" class="form-control" placeholder="website" />
+                                                <label asp-for="Website" class="control-label"></label>
+                                                <input asp-for="Website" class="form-control" placeholder="e.g. https://octavenashville.com" />
                                                 <span asp-validation-for="Website" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                        <div class=" col-md-4">
-                                            <div class="form-group input">
-                                                <input asp-for="PhotoUrl" class="form-control" placeholder="photo url" />
-                                                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group input">
+                                        <label asp-for="Note" class="control-label">Notes</label>
                                         <input asp-for="Note" class="form-control" placeholder="notes" />
                                         <span asp-validation-for="Note" class="text-danger"></span>
                                     </div>
                                     
                                     <div class="card-footer text-center">
-                                        <button type="submit" class="btn btn-primary btn-round btn-sm btn-block brand">+ Apartment</button>
+                                        <button id="addAptBtn" type="submit" class="btn btn-primary btn-round btn-lg btn-block brand">+ Apartment</button>
                                     </div>
                                 </form>
                             </div>
