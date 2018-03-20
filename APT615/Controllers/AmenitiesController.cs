@@ -109,36 +109,34 @@ namespace APT615.Controllers
         // POST: Amenities/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AmenityId,Type")] Amenity amenity)
+        public async Task<IActionResult> EditPost(int? id)
         {
-            if (id != amenity.AmenityId)
+            if (id == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            var user = await GetCurrentUserAsync();
+            var amenityToUpdate = await _context.Amenities.SingleOrDefaultAsync(a => a.AmenityId == id && a.User == user);
+            if (await TryUpdateModelAsync<Amenity>(
+                amenityToUpdate,
+                "",
+                a => a.Type
+                ))
             {
                 try
                 {
-                    _context.Update(amenity);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException /* ex */)
                 {
-                    if (!AmenityExists(amenity.AmenityId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes.");
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(amenity);
+            return View(amenityToUpdate);
         }
 
         // GET: Amenities/Delete/5
