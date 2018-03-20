@@ -184,7 +184,21 @@
                                         <input asp-for="Note" class="form-control" placeholder="notes" />
                                         <span asp-validation-for="Note" class="text-danger"></span>
                                     </div>
-                                    
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label class="control-label">
+                                                <input asp-for="Favorited" /> @Html.DisplayNameFor(model => model.Favorited)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label class="control-label">
+                                                <input asp-for="Visited" /> @Html.DisplayNameFor(model => model.Visited)
+                                            </label>
+                                        </div>
+                                    </div>
+
                                     <div class="card-footer text-center">
                                         <button id="addAptBtn" type="submit" class="btn btn-primary btn-round btn-lg btn-block brand">+ Apartment</button>
                                     </div>

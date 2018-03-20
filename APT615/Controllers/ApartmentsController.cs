@@ -10,6 +10,7 @@ using APT615.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using APT615.Models.ApartmentViewModels.Track;
+using APT615.Models.ApartmentViewModels;
 
 namespace APT615.Controllers
 {
@@ -27,6 +28,25 @@ namespace APT615.Controllers
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+        // GET: Apartments
+        public async Task<IActionResult> TrackedApartments()
+        {
+            var user = await GetCurrentUserAsync();
+            var model = new TrackedApartmentViewModel
+            {
+                TrackedApartments = GetUserTrackedApartments(user)
+            };
+            return View(model);
+        }
+
+        public ICollection<Apartment> GetUserTrackedApartments (ApplicationUser user)
+        {
+            var TrackedApts = _context.Apartments
+                .Where(m => m.User == user)
+                .ToList();
+            return (TrackedApts);
+        }
 
         // GET: Apartments
         public async Task<IActionResult> Index()
@@ -92,51 +112,52 @@ namespace APT615.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartments.SingleOrDefaultAsync(m => m.ApartmentId == id);
+            var apartment = await _context.Apartments
+                .SingleOrDefaultAsync(m => m.ApartmentId == id);
             if (apartment == null)
             {
                 return NotFound();
             }
+
             return View(apartment);
         }
 
         // POST: Apartments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ApartmentId,Name,Area,Rent,ApplicationFee,PetFee,MiscFees,AdminFee,DateAdded,Note,Bedrooms,Bathrooms,SqFt,Street,City,State,ZipCode,Latitude,Longitude,Website,PhotoUrl,Favorited,Visited")] Apartment apartment)
+        public async Task<IActionResult> EditPost(int? id)
         {
-            if (id != apartment.ApartmentId)
+            if (id == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            var user = await GetCurrentUserAsync();
+            var apartmentToUpdate = await _context.Apartments.SingleOrDefaultAsync(a => a.ApartmentId == id && a.User == user);
+            if (await TryUpdateModelAsync<Apartment>(
+                apartmentToUpdate,
+                "",
+                a => a.Favorited, a => a.Visited, a => a.Rent, a => a.MiscFees, a => a.Note
+                ))
             {
                 try
                 {
-                    _context.Update(apartment);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException /* ex */)
                 {
-                    if (!ApartmentExists(apartment.ApartmentId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes.");
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(apartment);
+            return View(apartmentToUpdate);
         }
 
+
         // GET: Apartments/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
@@ -144,10 +165,16 @@ namespace APT615.Controllers
             }
 
             var apartment = await _context.Apartments
+                   .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ApartmentId == id);
             if (apartment == null)
             {
                 return NotFound();
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again.";
             }
 
             return View(apartment);

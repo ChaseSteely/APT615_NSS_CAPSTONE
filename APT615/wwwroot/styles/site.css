@@ -8,6 +8,10 @@
     font-family: 'Megrim', cursive;
 }
 
+.cards {
+    padding-top: 50px !important;
+}
+
 #homeLogo, #getIndexMap, #amenityBtn, #addAptBtn, #footerBrand {
     font-size: 2em;
 }
@@ -35,6 +39,10 @@
     font-size: 1em !important
 }
 
+#editForm {
+    top: 50% !important;
+}
+
 .form-group {
     padding-bottom: 10px !important;
 }
@@ -44,7 +52,11 @@ option {
     color: #fa7a50 !important;
 }
 
-#apartmentSearch {
+#editLink, #delLink {
+    color: #fa7a50 !important;
+}
+
+#apartmentSearch, .editForm {
     border-color: #fa7a50 !important;
     border-width: 2px !important;
 }

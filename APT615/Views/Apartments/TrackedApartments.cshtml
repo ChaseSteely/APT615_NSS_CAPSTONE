@@ -1,0 +1,57 @@
+﻿@model APT615.Models.ApartmentViewModels.TrackedApartmentViewModel
+@{
+    ViewData["Title"] = "TrackedApartments";
+}
+
+
+<div class="blog-posts">
+    <div class="wrapper">
+        <div class="page-header page-header-small">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('../images/apartmentDark.jpg') ;">
+            </div>
+            <div class="content-center">
+                <div class="row">
+                    <div class="col-md-8 ml-auto typography-line mr-auto text-center">
+                        <h2 class="title">Tracked Apartments</h2>
+                        <h6>View, Edit, or Delete Your Tracked Apartments</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="container">
+                <div class="row">
+
+                    @foreach (var trackedApartment in Model.TrackedApartments)
+                    {
+
+                        <div id="movie--@Html.DisplayFor(modelItem => trackedApartment.ApartmentId)" class="col-md-6 col-lg-3">
+                            <div class="card card-pricing card-background" style="background-image: url('../images/apartmentMenu.jpg')">
+                                <div class="card-body">
+                                    <h6 class="card-title">@Html.DisplayFor(modelItem => trackedApartment.Name)</h6>
+                                    <ul>
+                                        <li>Rent: @Html.DisplayFor(modelItem => trackedApartment.Rent)</li>
+                                        <li>SqFt: @Html.DisplayFor(modelItem => trackedApartment.SqFt)</li>
+                                        <li>Address: @Html.DisplayFor(modelItem => trackedApartment.Street) @Html.DisplayFor(modelItem => trackedApartment.City) @Html.DisplayFor(modelItem => trackedApartment.State)</li>
+                                        <li>Favorited: @Html.DisplayFor(modelItem => trackedApartment.Favorited)</li>
+                                        <li>Bedrooms: @Html.DisplayFor(modelItem => trackedApartment.Bedrooms)</li>
+                                        <li>Bathrooms: @Html.DisplayFor(modelItem => trackedApartment.Bathrooms)</li>
+                                        <li>Fees: Application = @Html.DisplayFor(modelItem => trackedApartment.ApplicationFee) Admin = @Html.DisplayFor(modelItem => trackedApartment.AdminFee) Misc = @Html.DisplayFor(modelItem => trackedApartment.MiscFees)</li>
+                                        <li>Fees:  Misc = @Html.DisplayFor(modelItem => trackedApartment.MiscFees) Pet = @Html.DisplayFor(modelItem => trackedApartment.PetFee)</li>
+                                    </ul>
+                                    <a id="editLink" class="text-primary" asp-action="Edit" asp-route-id="@trackedApartment.ApartmentId">Edit</a>
+                                    <a id="delLink" class="text-primary" asp-action="Delete" asp-route-id="@trackedApartment.ApartmentId">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
