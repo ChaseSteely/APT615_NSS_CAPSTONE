@@ -24,40 +24,99 @@
                                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                                     <input type="hidden" asp-for="ApartmentId" />
                                                     <div class=" col-md-3 mx-auto">
-                                                        <div class="form-group">
+                                                        <div class="form-group input">
                                                             <label asp-for="Rent" class="control-label">Monthly Rent</label>
                                                             <input asp-for="Rent" class="form-control form-control-lg text-center" />
                                                             <span asp-validation-for="Rent" class="text-danger"></span>
                                                         </div>
                                                     </div>
                                                     <div class=" col-md-3 mx-auto">
-                                                        <div class="form-group">
+                                                        <div class="form-group input">
+                                                            <label asp-for="ApplicationFee" class="control-label">Monthly Fees</label>
+                                                            <input asp-for="ApplicationFee" class="form-control form-control-lg text-center " />
+                                                            <span asp-validation-for="ApplicationFee" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-3 mx-auto">
+                                                        <div class="form-group input">
                                                             <label asp-for="MiscFees" class="control-label">Monthly Fees</label>
                                                             <input asp-for="MiscFees" class="form-control form-control-lg text-center " />
                                                             <span asp-validation-for="MiscFees" class="text-danger"></span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label asp-for="Note" class="control-label">Notes</label>
-                                                    <textarea  asp-for="Note" class="form-control form-control-lg text-cente " rows="4"></textarea>
-                                                    <span asp-validation-for="Note" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label class="control-label">
-                                                            <input asp-for="Favorited" /> @Html.DisplayNameFor(model => model.Favorited)
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label class="control-label">
-                                                            <input asp-for="Visited" /> @Html.DisplayNameFor(model => model.Visited)
-                                                        </label>
+                                                    <div class=" col-md-3 mx-auto">
+                                                        <div class="form-group input">
+                                                            <label asp-for="PetFee" class="control-label">Monthly Fees</label>
+                                                            <input asp-for="PetFee" class="form-control form-control-lg text-center " />
+                                                            <span asp-validation-for="PetFee" class="text-danger"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
 
+                                                <div class="row">
+                                                    <div class=" col-md-3 mx-auto">
+                                                        <div class="form-group input">
+                                                            <div class="form-group input">
+                                                                <label asp-for="Website" class="control-label"></label>
+                                                                <input asp-for="Website" class="form-control form-control-lg text-center" placeholder="e.g. https://octavenashville.com" />
+                                                                <span asp-validation-for="Website" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-3 mx-auto">
+                                                        <div class="form-group input">
+                                                            <div class="form-group input">
+                                                                <label asp-for="PhotoUrl" class="control-label"></label>
+                                                                <input asp-for="PhotoUrl" class="form-control form-control-lg text-center" placeholder="e.g. https://octavenashville.com" />
+                                                                <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mx-auto input">
+                                                    <label asp-for="Note" class="control-label">Notes</label>
+                                                    <textarea asp-for="Note" class="form-control form-control-lg text-center" rows="4"></textarea>
+                                                    <span asp-validation-for="Note" class="text-danger"></span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group mx-auto input">
+                                                        <div class="checkbox">
+                                                            <label class="control-label">
+                                                                <input asp-for="Favorited" /> @Html.DisplayNameFor(model => model.Favorited)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mx-auto input">
+                                                        <div class="checkbox">
+                                                            <label class="control-label">
+                                                                <input asp-for="Visited" /> @Html.DisplayNameFor(model => model.Visited)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mx-auto input">
+
+                                                    <div class="btn-group" data-toggle="buttons">
+
+                                                        @{
+
+                                                            List<APT615.Models.ViewModels.AssignedAmenities> amenities = ViewBag.Amenities;
+                                                            foreach (var amenity in amenities)
+                                                            {
+                                                        <label class="btn amenityCheck btn-primary">
+                                                            <input type="checkbox"
+                                                                   autocomplete="off"
+                                                                   name="selectedAmenities"
+                                                                   value="@amenity.AmenityId"
+                                                                   @(Html.Raw(amenity.HasAmenity ? "active=\"active\"" : "")) />
+                                                            <span class="now-ui-icons ui-1_check"></span>
+                                                            @amenity.Type
+                                                        </label>
+                                                            }
+                                                        }
+                                                    </div>
+
+                                                </div>
                                                 <div class="card-footer form-group text-center">
                                                     <input id="addAptBtn" value="Save" type="submit" class="btn btn-primary btn-round btn-lg btn-block brand">
                                                 </div>
@@ -75,9 +134,9 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

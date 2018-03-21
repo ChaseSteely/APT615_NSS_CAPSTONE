@@ -145,7 +145,7 @@ namespace APT615.Controllers
             var viewModel = new List<AssignedAmenities>();
             if (allAmenities == null)
             {
-
+                ViewData["Message"] = "You Haven't Added Any Amenities.";
             }
             foreach (var amenity in allAmenities)
             {
@@ -156,12 +156,10 @@ namespace APT615.Controllers
                     HasAmenity = apartmentAmenities.Contains(amenity.AmenityId)
                 });
             }
+            
             ViewData["Amenities"] = viewModel;
 
         }
-
-
-
 
         // POST: Apartments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

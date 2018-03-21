@@ -12,6 +12,20 @@
     padding-top: 50px !important;
 }
 
+.amenityCheck input[type="checkbox"]:empty {
+    display: none;
+}
+
+
+
+.btn span.now-ui-icons {
+    opacity: 0 !important;
+}
+
+.btn.active span.now-ui-icons {
+    opacity: 1 !important;
+}
+
 #homeLogo, #getIndexMap, #amenityBtn, #addAptBtn, #footerBrand {
     font-size: 2em;
 }
