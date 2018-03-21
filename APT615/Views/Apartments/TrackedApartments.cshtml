@@ -1,4 +1,4 @@
-﻿@model APT615.Models.ApartmentViewModels.TrackedApartmentViewModel
+﻿@model APT615.Models.ApartmentViewModels
 
 @{
     ViewData["Title"] = "TrackedApartments";
@@ -40,16 +40,6 @@
                                         <li>Fees: Application = @Html.DisplayFor(modelItem => trackedApartment.ApplicationFee) Admin = @Html.DisplayFor(modelItem => trackedApartment.AdminFee) Misc = @Html.DisplayFor(modelItem => trackedApartment.MiscFees)</li>
                                         <li>Fees:  Misc = @Html.DisplayFor(modelItem => trackedApartment.MiscFees) Pet = @Html.DisplayFor(modelItem => trackedApartment.PetFee)</li>
                                     </ul>
-                                    <form>
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <div class="form-group">
-                                            <input type="hidden" multiple="multiple" asp-for="Apartments.ApartmentId" />
-                                            <label asp-for="Amenity" class="control-label">Choose Amenities</label>
-                                            <select asp-for="Amenity.AmenityId" asp-items="@Model.Amenities"></select>
-                                        </div>
-                                        <input type="submit" value="AddAmenity" class="btn btn-default" />
-                                    </form>
-                                  
                                     <a id="editLink" class="text-primary" asp-action="Edit" asp-route-id="@trackedApartment.ApartmentId">Edit</a>
                                     <a id="delLink" class="text-primary" asp-action="Delete" asp-route-id="@trackedApartment.ApartmentId">Delete</a>
                                 </div>

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using APT615.Models.ApartmentViewModels.Track;
 using APT615.Models.ApartmentViewModels;
 using Microsoft.AspNetCore.Authorization;
+using APT615.Models.ViewModels;
 
 namespace APT615.Controllers
 {
@@ -47,7 +48,7 @@ namespace APT615.Controllers
             {
                 model.TrackedApartments = null;
             }
-          
+
             return View(model);
         }
 
@@ -65,11 +66,11 @@ namespace APT615.Controllers
             var user = await GetCurrentUserAsync();
             var AllApartments = await _context.Apartments
                 .Where(m => m.User == user).ToListAsync();
-                if (AllApartments == null)
+            if (AllApartments == null)
             {
                 return NotFound();
             }
-           
+
             return View(AllApartments);
         }
 
@@ -122,66 +123,124 @@ namespace APT615.Controllers
             {
                 return NotFound();
             }
-
-            var apartment = await _context.Apartments
-                .SingleOrDefaultAsync(m => m.ApartmentId == id);
+            var user = await GetCurrentUserAsync();
+                var apartment = await _context.Apartments
+                    .Include(a => a.ApartmentAmenities).ThenInclude(a => a.Amenitiz)
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(m => m.ApartmentId == id && m.User == user);
             if (apartment == null)
             {
-                return NotFound();
+                ViewData["Message"] = "You Haven't Added Any Amenities.";
+                return View(apartment);
             }
-
+            PopulateAssignedAmenities(apartment);
             return View(apartment);
+
         }
-        [HttpPost, ActionName("AddAmenity")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddAmenity(int? id)
+
+        private void PopulateAssignedAmenities(Apartment apartment)
         {
-            Console.WriteLine(id);
-            ModelState.Remove("User");
-            if (ModelState.IsValid)
+            var allAmenities = _context.Amenities;
+            var apartmentAmenities = new HashSet<int?>(apartment.ApartmentAmenities.Select(a => a.AmenityId));
+            var viewModel = new List<AssignedAmenities>();
+            if (allAmenities == null)
             {
-                var user = await _userManager.GetUserAsync(HttpContext.User);
-                var apartment = await _context.Apartments
-                    .SingleOrDefaultAsync(a => a.ApartmentId == id && a.User == user);
-                Console.WriteLine(apartment);
-                //_context.Add(apartment.ApartmentAmenities);
-                //await _context.SaveChangesAsync();
-                return View();
+
             }
-            return View();
+            foreach (var amenity in allAmenities)
+            {
+                viewModel.Add(new AssignedAmenities
+                {
+                    AmenityId = amenity.AmenityId,
+                    Type = amenity.Type,
+                    HasAmenity = apartmentAmenities.Contains(amenity.AmenityId)
+                });
+            }
+            ViewData["Amenities"] = viewModel;
+
         }
+
+
+
 
         // POST: Apartments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("Edit")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id)
+        public async Task<IActionResult> Edit(int? id, string[] selectedAmenities)
         {
             if (id == null)
             {
                 return NotFound();
             }
             var user = await GetCurrentUserAsync();
-            var apartmentToUpdate = await _context.Apartments.SingleOrDefaultAsync(a => a.ApartmentId == id && a.User == user);
+            var apartmentToUpdate = await _context.Apartments
+                .Include(i => i.ApartmentAmenities)
+                .ThenInclude(a => a.Amenitiz)
+                .SingleOrDefaultAsync(a => a.ApartmentId == id && a.User == user);
             if (await TryUpdateModelAsync<Apartment>(
                 apartmentToUpdate,
                 "",
-                a => a.Favorited, a => a.Visited, a => a.Rent, a => a.MiscFees, a => a.Note
+                a => a.Favorited, a => a.Visited, a => a.Rent, a => a.MiscFees, a => a.Note, a => a.AdminFee,
+                a => a.ApplicationFee, a => a.Area, a => a.SqFt, a => a.Website, a => a.Bathrooms,
+                a => a.Bedrooms, a => a.PetFee, a => a.PhotoUrl
                 ))
             {
+                UpdateApartmentAmenities(selectedAmenities, apartmentToUpdate);
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException /* ex */)
                 {
                     //Log the error (uncomment ex variable name and write a log.)
                     ModelState.AddModelError("", "Unable to save changes.");
                 }
+                return RedirectToAction(nameof(Index));
             }
+            UpdateApartmentAmenities(selectedAmenities, apartmentToUpdate);
+            PopulateAssignedAmenities(apartmentToUpdate);
             return View(apartmentToUpdate);
+
+        }
+
+        private void UpdateApartmentAmenities(string[] selectedAmenities, Apartment apartmentToUpdate)
+        {
+            if (selectedAmenities == null)
+            {
+                apartmentToUpdate.ApartmentAmenities = new List<ApartmentAmenity>();
+                return;
+            }
+
+            var selectedAmenitiesHS = new HashSet<string>(selectedAmenities);
+            var apartmentAmenities = new HashSet<int?>(apartmentToUpdate.ApartmentAmenities.Select(a => a.AmenityId));
+            foreach (var amenity in _context.Amenities)
+            {
+                if (selectedAmenitiesHS.Contains(amenity.AmenityId.ToString()))
+                {
+                    if (!apartmentAmenities.Contains(amenity.AmenityId))
+                    {
+                        apartmentToUpdate.ApartmentAmenities.Add(
+                            new ApartmentAmenity
+                            {
+                                ApartmentId = apartmentToUpdate.ApartmentId,
+                                AmenityId = amenity.AmenityId
+                            });
+                    }
+                }
+                else
+                {
+                    if (apartmentAmenities.Contains(amenity.AmenityId))
+                    {
+                        ApartmentAmenity amenityToRemove
+                            = apartmentToUpdate
+                                .ApartmentAmenities
+                                .SingleOrDefault(i => i.AmenityId == amenity.AmenityId);
+                        _context.Remove(amenityToRemove);
+                    }
+                }
+            }
         }
 
 
