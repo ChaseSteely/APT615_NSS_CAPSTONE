@@ -65,7 +65,7 @@ namespace APT615.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction(nameof(ApartmentsController.Track), "Apartments");
+                    return RedirectToAction(nameof(ApartmentsController.TrackedApartments), "Apartments");
                 }
                 if (result.RequiresTwoFactor)
                 {

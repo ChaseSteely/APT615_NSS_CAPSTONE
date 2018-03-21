@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using APT615.Models.ApartmentViewModels.Track;
 using APT615.Models.ApartmentViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APT615.Controllers
 {
@@ -33,14 +34,24 @@ namespace APT615.Controllers
         public async Task<IActionResult> TrackedApartments()
         {
             var user = await GetCurrentUserAsync();
-            var model = new TrackedApartmentViewModel
+            var model = new TrackedApartmentViewModel(_context);
+            try
             {
-                TrackedApartments = GetUserTrackedApartments(user)
-            };
+                model.TrackedApartments = _context.Apartments
+                    .Include(aa => aa.ApartmentAmenities)
+                    .ThenInclude(a => a.Amenitiz)
+                    .Where(m => m.User == user)
+                    .ToList();
+            }
+            catch (NullReferenceException)
+            {
+                model.TrackedApartments = null;
+            }
+          
             return View(model);
         }
 
-        public ICollection<Apartment> GetUserTrackedApartments (ApplicationUser user)
+        public ICollection<Apartment> GetUserTrackedApartments(ApplicationUser user)
         {
             var TrackedApts = _context.Apartments
                 .Where(m => m.User == user)
@@ -58,7 +69,7 @@ namespace APT615.Controllers
             {
                 return NotFound();
             }
-
+           
             return View(AllApartments);
         }
 
@@ -120,6 +131,24 @@ namespace APT615.Controllers
             }
 
             return View(apartment);
+        }
+        [HttpPost, ActionName("AddAmenity")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddAmenity(int? id)
+        {
+            Console.WriteLine(id);
+            ModelState.Remove("User");
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var apartment = await _context.Apartments
+                    .SingleOrDefaultAsync(a => a.ApartmentId == id && a.User == user);
+                Console.WriteLine(apartment);
+                //_context.Add(apartment.ApartmentAmenities);
+                //await _context.SaveChangesAsync();
+                return View();
+            }
+            return View();
         }
 
         // POST: Apartments/Edit/5
