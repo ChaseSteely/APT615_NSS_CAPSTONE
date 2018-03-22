@@ -19,6 +19,6 @@ namespace APT615.Models
         public Apartment Apartment { get; set; }
 
         public int? AmenityId { get; set; }
-        public Amenity Amenitiz { get; set; }
+        public Amenity Amenities { get; set; }
     }
 }

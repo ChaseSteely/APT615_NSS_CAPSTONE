@@ -1,4 +1,4 @@
-﻿@model APT615.Models.ApartmentViewModels
+﻿@model APT615.Models.ViewModels.ApartmentIndexData
 
 @{
     ViewData["Title"] = "TrackedApartments";
@@ -23,7 +23,7 @@
             <div class="container">
                 <div class="row">
 
-                    @foreach (var trackedApartment in Model.TrackedApartments)
+                    @foreach (var trackedApartment in Model.Apartments)
                     {
 
                         <div id="apartment--@Html.DisplayFor(modelItem => trackedApartment.ApartmentId)" class="col-md-6 col-lg-3 mx-auto">

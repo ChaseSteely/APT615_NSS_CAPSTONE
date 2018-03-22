@@ -22,7 +22,7 @@ namespace APT615.Controllers
         // GET: ApartmentAmenities
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ApartmentAmenities.Include(a => a.Amenitiz).Include(a => a.Apartment);
+            var applicationDbContext = _context.ApartmentAmenities.Include(a => a.Amenities).Include(a => a.Apartment);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace APT615.Controllers
             }
 
             var apartmentAmenity = await _context.ApartmentAmenities
-                .Include(a => a.Amenitiz)
+                .Include(a => a.Amenities)
                 .Include(a => a.Apartment)
                 .SingleOrDefaultAsync(m => m.ApartAmenityId == id);
             if (apartmentAmenity == null)
@@ -136,7 +136,7 @@ namespace APT615.Controllers
             }
 
             var apartmentAmenity = await _context.ApartmentAmenities
-                .Include(a => a.Amenitiz)
+                .Include(a => a.Amenities)
                 .Include(a => a.Apartment)
                 .SingleOrDefaultAsync(m => m.ApartAmenityId == id);
             if (apartmentAmenity == null)

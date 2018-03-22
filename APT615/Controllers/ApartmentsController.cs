@@ -9,8 +9,6 @@ using APT615.Data;
 using APT615.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
-using APT615.Models.ApartmentViewModels.Track;
-using APT615.Models.ApartmentViewModels;
 using Microsoft.AspNetCore.Authorization;
 using APT615.Models.ViewModels;
 
@@ -32,23 +30,26 @@ namespace APT615.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Apartments
-        public async Task<IActionResult> TrackedApartments()
+        public async Task<IActionResult> TrackedApartments(int? id, int? amenityId)
         {
             var user = await GetCurrentUserAsync();
-            var model = new TrackedApartmentViewModel(_context);
-            try
-            {
-                model.TrackedApartments = _context.Apartments
+            var model = new ApartmentIndexData();
+                model.Apartments = await _context.Apartments
                     .Include(aa => aa.ApartmentAmenities)
-                    .ThenInclude(a => a.Amenitiz)
+                    .ThenInclude(a => a.Amenities)
                     .Where(m => m.User == user)
-                    .ToList();
-            }
-            catch (NullReferenceException)
-            {
-                model.TrackedApartments = null;
-            }
+                    .OrderBy(i => i.Name)
+                    .ToListAsync();
 
+            if(id != null)
+            {
+                ViewData["ApartmentId"] = id.Value;
+                Apartment apartment = model.Apartments
+                .Where(a => a.ApartmentId == id.Value)
+                .Single();
+                model.Amenities = apartment.ApartmentAmenities
+                    .Select(a => a.Amenities);
+            }
             return View(model);
         }
 
@@ -95,6 +96,9 @@ namespace APT615.Controllers
         // GET: Apartments/Track
         public IActionResult Track()
         {
+            var apartment = new Apartment();
+            apartment.ApartmentAmenities = new List<ApartmentAmenity>();
+            PopulateAssignedAmenities(apartment);
             return View();
         }
 
@@ -103,8 +107,16 @@ namespace APT615.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Track([Bind("ApartmentId,Name,Area,Rent,ApplicationFee,PetFee,MiscFees,AdminFee,DateAdded,Note,Bedrooms,Bathrooms,SqFt,Street,City,State,ZipCode,Latitude,Longitude,Website,PhotoUrl,Favorited,Visited")] Apartment apartment)
+        public async Task<IActionResult> Track([Bind("ApartmentId,Name,Area,Rent,ApplicationFee,PetFee,MiscFees,AdminFee,DateAdded,Note,Bedrooms,Bathrooms,SqFt,Street,City,State,ZipCode,Latitude,Longitude,Website,PhotoUrl,Favorited,Visited")] Apartment apartment, string[] selectedAmenities)
         {
+            if(selectedAmenities != null )
+            {
+                apartment.ApartmentAmenities = new List<ApartmentAmenity>();
+                foreach(var amenity in selectedAmenities)
+                {
+                    var amenityToAdd = new ApartmentAmenity { ApartmentId = apartment.ApartmentId, AmenityId = int.Parse(amenity) };
+                }
+            }
             ModelState.Remove("User");
             if (ModelState.IsValid)
             {
@@ -113,6 +125,7 @@ namespace APT615.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            PopulateAssignedAmenities(apartment);
             return View(apartment);
         }
 
@@ -125,7 +138,7 @@ namespace APT615.Controllers
             }
             var user = await GetCurrentUserAsync();
                 var apartment = await _context.Apartments
-                    .Include(a => a.ApartmentAmenities).ThenInclude(a => a.Amenitiz)
+                    .Include(a => a.ApartmentAmenities).ThenInclude(a => a.Amenities)
                     .AsNoTracking()
                     .SingleOrDefaultAsync(m => m.ApartmentId == id && m.User == user);
             if (apartment == null)
@@ -175,7 +188,7 @@ namespace APT615.Controllers
             var user = await GetCurrentUserAsync();
             var apartmentToUpdate = await _context.Apartments
                 .Include(i => i.ApartmentAmenities)
-                .ThenInclude(a => a.Amenitiz)
+                .ThenInclude(a => a.Amenities)
                 .SingleOrDefaultAsync(a => a.ApartmentId == id && a.User == user);
             if (await TryUpdateModelAsync<Apartment>(
                 apartmentToUpdate,
@@ -271,7 +284,9 @@ namespace APT615.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var apartment = await _context.Apartments.SingleOrDefaultAsync(m => m.ApartmentId == id);
+            Apartment apartment = await _context.Apartments
+                .Include(a => a.ApartmentAmenities)
+                .SingleAsync(m => m.ApartmentId == id);
             _context.Apartments.Remove(apartment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
