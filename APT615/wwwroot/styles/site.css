@@ -3,7 +3,9 @@
     opacity: .8;
 }
 
-
+#googleMap{
+    z-index: 99 !important;
+}
 .brand {
     font-family: 'Megrim', cursive;
 }

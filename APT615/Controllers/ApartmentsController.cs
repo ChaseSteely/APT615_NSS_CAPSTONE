@@ -53,6 +53,29 @@ namespace APT615.Controllers
             return View(model);
         }
 
+        // GET: Map
+        public async Task<IActionResult> ApartmentMap(int? id, int? amenityId)
+        {
+            var user = await GetCurrentUserAsync();
+            var model = new ApartmentIndexData();
+            model.Apartments = await _context.Apartments
+                .Include(aa => aa.ApartmentAmenities)
+                .ThenInclude(a => a.Amenities)
+                .Where(m => m.User == user)
+                .ToListAsync();
+
+            if (id != null)
+            {
+                ViewData["ApartmentId"] = id.Value;
+                Apartment apartment = model.Apartments
+                .Where(a => a.ApartmentId == id.Value)
+                .Single();
+                model.Amenities = apartment.ApartmentAmenities
+                    .Select(a => a.Amenities);
+            }
+            return View(model);
+        }
+
         // GET: Apartments
         public async Task<IActionResult> Index(int? id, int? amenityId)
         {

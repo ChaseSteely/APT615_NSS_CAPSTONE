@@ -1,7 +1,8 @@
 ﻿@model APT615.Models.ViewModels.ApartmentIndexData
+@inject APT615.Services.IApplicationConfiguration AppSettings;
 
 @{
-    ViewData["Title"] = "TrackedApartments";
+    ViewData["Title"] = "Tracked Apartments";
 }
 
 
@@ -19,54 +20,91 @@
                 </div>
             </div>
         </div>
-       
-        <div class="cards">
-            <div class="container">
-                <div class="row">
+        <div class="content-center">
+            <ul class="nav nav-tabs content-center" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Tracked Apartments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">My Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
 
-                    @foreach (var trackedApartment in Model.Apartments)
-                {
 
-                    <div id="apartment--@Html.DisplayFor(modelItem => trackedApartment.ApartmentId)" class="col-md-4 mx-auto">
-                        <div class="card card-pricing card-background" style="background-image: url('../images/apartmentMenu.jpg')">
-                            <div class="card-body">
-                                <h6 class="card-title">@Html.DisplayFor(modelItem => trackedApartment.Name)</h6>
-                                <ul>
-                                    <li>Rent: @Html.DisplayFor(modelItem => trackedApartment.Rent)</li>
-                                    <li>SqFt: @Html.DisplayFor(modelItem => trackedApartment.SqFt)</li>
-                                    <li>Address: @Html.DisplayFor(modelItem => trackedApartment.Street) @Html.DisplayFor(modelItem => trackedApartment.City) @Html.DisplayFor(modelItem => trackedApartment.State)</li>
-                                    <li>Favorited: @Html.DisplayFor(modelItem => trackedApartment.Favorited)</li>
-                                    <li>Visited: @Html.DisplayFor(modelItem => trackedApartment.Visited)</li>
-                                    <li>Bedrooms: @Html.DisplayFor(modelItem => trackedApartment.Bedrooms)</li>
-                                    <li>Bathrooms: @Html.DisplayFor(modelItem => trackedApartment.Bathrooms)</li>
-                                    <li>Application Fee = @Html.DisplayFor(modelItem => trackedApartment.ApplicationFee) Admin = @Html.DisplayFor(modelItem => trackedApartment.AdminFee)</li>
-                                    <li>Admin Fee = @Html.DisplayFor(modelItem => trackedApartment.AdminFee)</li>
-                                    <li>Pet = @Html.DisplayFor(modelItem => trackedApartment.PetFee)</li>
-                                    <li>Misc Fees = @Html.DisplayFor(modelItem => trackedApartment.MiscFees)</li>
-                                    <li><a class="text-primary" href="@Html.DisplayFor(modelItem => trackedApartment.Website)" target="_blank">Website</a></li>
-                                    <li>Notes: @Html.DisplayFor(modelItem => trackedApartment.Note)</li>
-                                </ul>
-                                <div class="dropdown">
-                                    <button class="btn btn-lg btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Amenities
-                                    </button>
-                                    <div class="dropdown-menu text-primary">
-                                        @{
+            <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">...</div>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.js"
+                    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                    crossorigin="anonymous"></script>
+            <script>
+                $(function () {
+                    $('#myTab li:last-child a').tab('show')
+                })
+            </script>
+            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="cards">
+                    <div class="container">
+                        <div class="row">
+
+                            @foreach (var trackedApartment in Model.Apartments)
+                    {
+
+                        <div id="apartment--@Html.DisplayFor(modelItem => trackedApartment.ApartmentId)" class="col-md-4 mx-auto">
+                            <div class="card card-pricing card-background" style="background-image: url('../images/apartmentMenu.jpg')">
+                                <div class="card-body">
+                                    <h6 class="card-title">@Html.DisplayFor(modelItem => trackedApartment.Name)</h6>
+                                    <ul>
+                                        <li>Rent: @Html.DisplayFor(modelItem => trackedApartment.Rent)</li>
+                                        <li>SqFt: @Html.DisplayFor(modelItem => trackedApartment.SqFt)</li>
+                                        <li>Address: @Html.DisplayFor(modelItem => trackedApartment.Street) @Html.DisplayFor(modelItem => trackedApartment.City) @Html.DisplayFor(modelItem => trackedApartment.State)</li>
+                                        <li>Favorited: @Html.DisplayFor(modelItem => trackedApartment.Favorited)</li>
+                                        <li>Visited: @Html.DisplayFor(modelItem => trackedApartment.Visited)</li>
+                                        <li>Bedrooms: @Html.DisplayFor(modelItem => trackedApartment.Bedrooms)</li>
+                                        <li>Bathrooms: @Html.DisplayFor(modelItem => trackedApartment.Bathrooms)</li>
+                                        <li>Application Fee = @Html.DisplayFor(modelItem => trackedApartment.ApplicationFee) Admin = @Html.DisplayFor(modelItem => trackedApartment.AdminFee)</li>
+                                        <li>Admin Fee = @Html.DisplayFor(modelItem => trackedApartment.AdminFee)</li>
+                                        <li>Pet = @Html.DisplayFor(modelItem => trackedApartment.PetFee)</li>
+                                        <li>Misc Fees = @Html.DisplayFor(modelItem => trackedApartment.MiscFees)</li>
+                                        <li><a class="text-primary" href="@Html.DisplayFor(modelItem => trackedApartment.Website)" target="_blank">Website</a></li>
+                                        <li>Notes: @Html.DisplayFor(modelItem => trackedApartment.Note)</li>
+                                    </ul>
+                                    <div class="dropdown">
+                                        <button class="btn btn-lg btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Amenities
+                                        </button>
+                                        <div class="dropdown-menu text-primary">
+                                            @{
                                         foreach (var amenity in trackedApartment.ApartmentAmenities)
                                         {
                                             <a href="#" onclick="return false;" id="doNothing" class="dropdown-item">@amenity.Amenities.Type</a>
-                                    }
-                                        }
+                                }
+                                            }
+                                        </div>
                                     </div>
+                                    <a id="editLink" class="text-primary" asp-action="Edit" asp-route-id="@trackedApartment.ApartmentId">Edit</a>
+                                    <a id="delLink" class="text-primary" asp-action="Delete" asp-route-id="@trackedApartment.ApartmentId">Delete</a>
                                 </div>
-                                <a id="editLink" class="text-primary" asp-action="Edit" asp-route-id="@trackedApartment.ApartmentId">Edit</a>
-                                <a id="delLink" class="text-primary" asp-action="Delete" asp-route-id="@trackedApartment.ApartmentId">Delete</a>
                             </div>
                         </div>
-                    </div>
             }
 
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                @await Html.PartialAsync("mapPartial")
+            </div>
+            <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                @await Html.PartialAsync("Index")
             </div>
         </div>
     </div>
