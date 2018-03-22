@@ -3,3 +3,5 @@ $('#Type').click(function () {
     $('#amenityError').html("");
     $('#Type').val('');
 });
+
+$("#doNothing").off('click');

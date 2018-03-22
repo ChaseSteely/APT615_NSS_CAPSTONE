@@ -53,26 +53,28 @@ namespace APT615.Controllers
             return View(model);
         }
 
-        public ICollection<Apartment> GetUserTrackedApartments(ApplicationUser user)
-        {
-            var TrackedApts = _context.Apartments
-                .Where(m => m.User == user)
-                .ToList();
-            return (TrackedApts);
-        }
-
         // GET: Apartments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id, int? amenityId)
         {
             var user = await GetCurrentUserAsync();
-            var AllApartments = await _context.Apartments
-                .Where(m => m.User == user).ToListAsync();
-            if (AllApartments == null)
-            {
-                return NotFound();
-            }
+            var model = new ApartmentIndexData();
+            model.Apartments = await _context.Apartments
+                .Include(aa => aa.ApartmentAmenities)
+                .ThenInclude(a => a.Amenities)
+                .Where(m => m.User == user)
+                .OrderBy(i => i.Name)
+                .ToListAsync();
 
-            return View(AllApartments);
+            if (id != null)
+            {
+                ViewData["ApartmentId"] = id.Value;
+                Apartment apartment = model.Apartments
+                .Where(a => a.ApartmentId == id.Value)
+                .Single();
+                model.Amenities = apartment.ApartmentAmenities
+                    .Select(a => a.Amenities);
+            }
+            return View(model);
         }
 
         // GET: Apartments/Details/5

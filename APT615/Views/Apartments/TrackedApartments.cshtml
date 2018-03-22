@@ -40,6 +40,19 @@
                                         <li>Fees: Application = @Html.DisplayFor(modelItem => trackedApartment.ApplicationFee) Admin = @Html.DisplayFor(modelItem => trackedApartment.AdminFee) Misc = @Html.DisplayFor(modelItem => trackedApartment.MiscFees)</li>
                                         <li>Fees:  Misc = @Html.DisplayFor(modelItem => trackedApartment.MiscFees) Pet = @Html.DisplayFor(modelItem => trackedApartment.PetFee)</li>
                                     </ul>
+                                    <div class="dropdown">
+                                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">
+                                            Amenities
+                                        </a>
+                                        <ul class="dropdown-menu text-center text-primary" aria-labelledby="navbarDropdownMenuLink1">
+                                            @{
+                                                foreach (var amenity in trackedApartment.ApartmentAmenities)
+                                                {
+                                            <li><a href="#" id="doNothing" class="dropdown-item">@amenity.Amenities.Type</a></li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
                                     <a id="editLink" class="text-primary" asp-action="Edit" asp-route-id="@trackedApartment.ApartmentId">Edit</a>
                                     <a id="delLink" class="text-primary" asp-action="Delete" asp-route-id="@trackedApartment.ApartmentId">Delete</a>
                                 </div>
@@ -54,6 +67,6 @@
 </div>
 
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<APT615.Models.Apartment>
+﻿@model APT615.Models.ViewModels.ApartmentIndexData
 
 @{
     ViewData["Title"] = "Index";
@@ -18,7 +18,9 @@
                 </div>
             </div>
         </div>
-
+        <p class="text-center brand text-primary">
+            <a class="text-center brand text-primary" asp-action="Track">Track An Apartment</a>
+        </p>
         <div id="tables">
             <div class="row">
                 <div class="col-md-12 ml-auto mr-auto">
@@ -29,31 +31,31 @@
                                     <thead class="text-nowrap">
                                         <tr>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Name)
+                                                Name
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Area)
+                                                Neighborhood
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Rent)
+                                                $ Rent
                                             </th>
                                             <th>
-                                                App Fee
+                                                $ App Fee
                                             </th>
                                             <th>
-                                                Pet Fee
+                                                $ Pet Fee
                                             </th>
                                             <th>
-                                                Misc Fees
+                                                $ Misc Fees
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.AdminFee)
+                                                $ Admin Fee
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.DateAdded)
+                                                Date Added
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Note)
+                                                Note
                                             </th>
                                             <th>
                                                 # Bedrooms
@@ -62,31 +64,34 @@
                                                 # Bathrooms
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.SqFt)
+                                                SqFt
                                             </th>
                                             <th>
                                                 Street Address
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.City)
+                                                City
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.State)
+                                                State
                                             </th>
                                             <th>
                                                 Zip
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Website)
+                                                Website
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.PhotoUrl)
+                                                PhotoUrl
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Favorited)
+                                                Favorited
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Visited)
+                                                Visited
+                                            </th>
+                                            <th>
+                                                Amenities
                                             </th>
                                             <th class="text-right">
                                                 Actions
@@ -95,9 +100,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Apartments)
                                         {
-                                            <tr class="text-nowrap">
+                                            string selectedRow = "";
+                                            if (item.ApartmentId == (int?)ViewData["ApartmentId"])
+                                            {
+                                                selectedRow = "success";
+                                            }
+                                            <tr class="text-nowrap @selectedRow">
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Name)
                                                 </td>
@@ -159,6 +169,14 @@
                                                     @Html.DisplayFor(modelItem => item.Visited)
                                                 </td>
                                                 <td>
+                                                    @{
+                                                        foreach (var amenity in item.ApartmentAmenities)
+                                                        {
+                                                            @amenity.Amenities.Type <br />
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
                                                     <a class="text-primary" asp-action="Edit" asp-route-id="@item.ApartmentId">Edit</a> |
                                                     <a class="text-primary" asp-action="Delete" asp-route-id="@item.ApartmentId">Delete</a>
                                                 </td>
@@ -166,14 +184,13 @@
                                         }
                                     </tbody>
                                 </table>
+                                <p class="text-center brand text-primary">
+                                    <a class="text-center brand text-primary" asp-action="Track">Track An Apartment</a>
+                                </p>
                             </div>
-                            <p class="text-center brand text-primary">
-                                <a class="text-center brand text-primary" asp-action="Track">Track An Apartment</a>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
