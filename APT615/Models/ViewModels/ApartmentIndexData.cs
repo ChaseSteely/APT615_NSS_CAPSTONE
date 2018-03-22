@@ -9,5 +9,6 @@ namespace APT615.Models.ViewModels
     {
         public IEnumerable<Apartment> Apartments { get; set; }
         public IEnumerable<Amenity> Amenities { get; set; }
+        public Apartment Apartment { get; set; }
     }
 }

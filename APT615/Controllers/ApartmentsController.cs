@@ -34,14 +34,14 @@ namespace APT615.Controllers
         {
             var user = await GetCurrentUserAsync();
             var model = new ApartmentIndexData();
-                model.Apartments = await _context.Apartments
-                    .Include(aa => aa.ApartmentAmenities)
-                    .ThenInclude(a => a.Amenities)
-                    .Where(m => m.User == user)
-                    .OrderBy(i => i.Name)
-                    .ToListAsync();
+            model.Apartments = await _context.Apartments
+                .Include(aa => aa.ApartmentAmenities)
+                .ThenInclude(a => a.Amenities)
+                .Where(m => m.User == user)
+                .OrderBy(i => i.Name)
+                .ToListAsync();
 
-            if(id != null)
+            if (id != null)
             {
                 ViewData["ApartmentId"] = id.Value;
                 Apartment apartment = model.Apartments
@@ -111,10 +111,10 @@ namespace APT615.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Track([Bind("ApartmentId,Name,Area,Rent,ApplicationFee,PetFee,MiscFees,AdminFee,DateAdded,Note,Bedrooms,Bathrooms,SqFt,Street,City,State,ZipCode,Latitude,Longitude,Website,PhotoUrl,Favorited,Visited")] Apartment apartment, string[] selectedAmenities)
         {
-            if(selectedAmenities != null )
+            if (selectedAmenities != null)
             {
                 apartment.ApartmentAmenities = new List<ApartmentAmenity>();
-                foreach(var amenity in selectedAmenities)
+                foreach (var amenity in selectedAmenities)
                 {
                     var amenityToAdd = new ApartmentAmenity { ApartmentId = apartment.ApartmentId, AmenityId = int.Parse(amenity) };
                 }
@@ -125,7 +125,7 @@ namespace APT615.Controllers
                 apartment.User = await _userManager.GetUserAsync(HttpContext.User);
                 _context.Add(apartment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(TrackedApartments));
             }
             PopulateAssignedAmenities(apartment);
             return View(apartment);
@@ -139,10 +139,10 @@ namespace APT615.Controllers
                 return NotFound();
             }
             var user = await GetCurrentUserAsync();
-                var apartment = await _context.Apartments
-                    .Include(a => a.ApartmentAmenities).ThenInclude(a => a.Amenities)
-                    .AsNoTracking()
-                    .SingleOrDefaultAsync(m => m.ApartmentId == id && m.User == user);
+            var apartment = await _context.Apartments
+                .Include(a => a.ApartmentAmenities).ThenInclude(a => a.Amenities)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ApartmentId == id && m.User == user);
             if (apartment == null)
             {
                 ViewData["Message"] = "You Haven't Added Any Amenities.";
@@ -171,7 +171,7 @@ namespace APT615.Controllers
                     HasAmenity = apartmentAmenities.Contains(amenity.AmenityId)
                 });
             }
-            
+
             ViewData["Amenities"] = viewModel;
 
         }
@@ -210,7 +210,7 @@ namespace APT615.Controllers
                     //Log the error (uncomment ex variable name and write a log.)
                     ModelState.AddModelError("", "Unable to save changes.");
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(TrackedApartments));
             }
             UpdateApartmentAmenities(selectedAmenities, apartmentToUpdate);
             PopulateAssignedAmenities(apartmentToUpdate);

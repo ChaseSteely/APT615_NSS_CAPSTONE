@@ -3891,33 +3891,7 @@ Created using IcoMoon - icomoon.io
     margin-top: 30px; }
   .card-pricing .icon {
     padding: 10px 0 0px; }
-    .card-pricing .icon i {
-      font-size: 30px;
-      line-height: 2.7;
-      max-width: 80px;
-      color: #888888;
-      width: 80px;
-      height: 80px;
-      margin: 0 auto;
-      border-radius: 50%;
-      box-shadow: 0px 9px 35px -6px rgba(0, 0, 0, 0.3);
-      background-color: #FFFFFF;
-      position: relative; }
-    .card-pricing .icon.icon-primary i {
-      box-shadow: 0px 9px 30px -6px #f96332;
-      color: #f96332; }
-    .card-pricing .icon.icon-info i {
-      box-shadow: 0px 9px 30px -6px #2CA8FF;
-      color: #2CA8FF; }
-    .card-pricing .icon.icon-success i {
-      color: #18ce0f;
-      box-shadow: 0px 9px 30px -6px rgba(22, 199, 13, 0.85); }
-    .card-pricing .icon.icon-warning i {
-      box-shadow: 0px 9px 30px -6px #FFB236;
-      color: #FFB236; }
-    .card-pricing .icon.icon-danger i {
-      box-shadow: 0px 9px 30px -6px #FF3636;
-      color: #FF3636; }
+
   .card-pricing h1 small {
     font-size: 18px; }
     .card-pricing h1 small:first-child {
@@ -3927,7 +3901,7 @@ Created using IcoMoon - icomoon.io
   .card-pricing ul {
     list-style: none;
     padding: 0;
-    max-width: 240px;
+    max-width: 340px;
     margin: 10px auto; }
     .card-pricing ul li {
       text-align: center;
@@ -3954,20 +3928,6 @@ Created using IcoMoon - icomoon.io
     padding-bottom: 1.25rem; }
   .card-pricing.card-background:after {
     background-color: rgba(0, 0, 0, 0.65); }
-
-.card-form-horizontal .card-body {
-  padding-left: 15px;
-  padding-right: 15px; }
-.card-form-horizontal .form-group {
-  padding-bottom: 0px;
-  margin: 3px 0 0 0; }
-  .card-form-horizontal .form-group .form-control {
-    margin-bottom: 0; }
-.card-form-horizontal .btn {
-  margin: 0; }
-.card-form-horizontal .input-group,
-.card-form-horizontal .form-group {
-  margin: 0; }
 
 .card-signup {
   max-width: 350px;
