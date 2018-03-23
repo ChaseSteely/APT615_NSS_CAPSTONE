@@ -1,4 +1,5 @@
 ﻿@inject APT615.Services.IApplicationConfiguration AppSettings;
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -21,7 +22,18 @@
                             <div class="col-md-10 ml-auto mr-auto">
                                 <div class="card card-raised card-form-horizontal card-plain" data-background-color>
                                     <div class="card-body">
-                                        <button id="getIndexMap" class="btn btn-primary btn-round btn-lg btn-block brand">click me</button>
+                                        @if (SignInManager.IsSignedIn(User))
+                                        {
+
+                                            <a id="dashIndexBtn" class="btn btn-primary btn-round btn-lg btn-block brand" asp-area="" asp-controller="Apartments" asp-action="TrackedApartments">My APT Dashboard</a>
+
+
+                                        }
+                                        else
+                                        {
+                                            <button id="getIndexMap" class="btn btn-primary btn-round btn-lg btn-block brand">click me</button>
+                                        }
+
                                     </div>
                                 </div>
                             </div>

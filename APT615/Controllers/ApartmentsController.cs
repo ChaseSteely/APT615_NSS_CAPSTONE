@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using APT615.Models.ViewModels;
+using System.Data.SqlClient;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace APT615.Controllers
 {
@@ -76,6 +79,8 @@ namespace APT615.Controllers
             return View(model);
         }
 
+
+
         // GET: Apartments
         public async Task<IActionResult> Index(int? id, int? amenityId)
         {
@@ -98,6 +103,20 @@ namespace APT615.Controllers
                     .Select(a => a.Amenities);
             }
             return View(model);
+        }
+
+        public IActionResult Map(DataTable dataTable)
+        {
+            List<ApartmentIndexData> mapList = new List<ApartmentIndexData>();
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                ApartmentIndexData MapAddress = new ApartmentIndexData();
+                var point = MapAddress;
+                MapAddress.Apartment.Latitude = point.Apartment.Latitude;
+                MapAddress.Apartment.Longitude = point.Apartment.Longitude;
+                mapList.Add(MapAddress);
+            }
+            return View();
         }
 
         // GET: Apartments/Details/5
@@ -320,6 +339,120 @@ namespace APT615.Controllers
         private bool ApartmentExists(int id)
         {
             return _context.Apartments.Any(e => e.ApartmentId == id);
+        }
+        // GET: Amenities/Create
+        public IActionResult CreateAmenity()
+        {
+            return View();
+        }
+
+        // POST: Amenities/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAmenity([Bind("AmenityId,Type")] Amenity amenity)
+        {
+            ModelState.Remove("User");
+            if (ModelState.IsValid)
+            {
+                amenity.User = await _userManager.GetUserAsync(HttpContext.User);
+                var user = await GetCurrentUserAsync();
+                var isDuplicate = await _context.Amenities
+                   .SingleOrDefaultAsync(a => a.User == user && a.Type == amenity.Type);
+                if (isDuplicate != null)
+                {
+                    ViewData["Message"] = "You Have Already Added This Amenity.";
+                    return View(amenity);
+                }
+                _context.Add(amenity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(amenity);
+        }
+
+        // GET: Amenities/Edit/5
+        public async Task<IActionResult> EditAmenity(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var amenity = await _context.Amenities.SingleOrDefaultAsync(m => m.AmenityId == id);
+            if (amenity == null)
+            {
+                return NotFound();
+            }
+            return View(amenity);
+        }
+
+        // POST: Amenities/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var user = await GetCurrentUserAsync();
+            var amenityToUpdate = await _context.Amenities.SingleOrDefaultAsync(a => a.AmenityId == id && a.User == user);
+            if (await TryUpdateModelAsync<Amenity>(
+                amenityToUpdate,
+                "",
+                a => a.Type
+                ))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes.");
+                }
+            }
+            return View(amenityToUpdate);
+        }
+
+        // GET: Amenities/Delete/5
+        public async Task<IActionResult> DeleteAmenity(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var amenity = await _context.Amenities
+                .SingleOrDefaultAsync(m => m.AmenityId == id);
+            if (amenity == null)
+            {
+                return NotFound();
+            }
+
+            return View(amenity);
+        }
+
+        // POST: Amenities/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmedAmenity(int id)
+        {
+            var amenity = await _context.Amenities.SingleOrDefaultAsync(m => m.AmenityId == id);
+            _context.Amenities.Remove(amenity);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool AmenityExists(int id)
+        {
+            return _context.Amenities.Any(e => e.AmenityId == id);
         }
     }
 }
