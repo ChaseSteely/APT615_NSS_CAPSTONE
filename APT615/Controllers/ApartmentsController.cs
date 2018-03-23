@@ -167,7 +167,7 @@ namespace APT615.Controllers
                 apartment.User = await _userManager.GetUserAsync(HttpContext.User);
                 _context.Add(apartment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Edit));
+                return RedirectToAction(nameof(TrackedApartments));
             }
             PopulateAssignedAmenities(apartment);
             return View(apartment);
