@@ -4,35 +4,38 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="blog-post">
-    <div class="wrapper">
-        <div class="page-header page-header-small">
-            <div class="page-header-image" data-parallax="true" style="background-image: url('../apartmentDark.jpg') ;">
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <form asp-action="Edit">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-for="AmenityId" />
-                        <div class="form-group">
-                            <label asp-for="Type" class="control-label"></label>
-                            <input asp-for="Type" class="form-control" />
-                            <span asp-validation-for="Type" class="text-danger"></span>
+div class="sections-page">
+<div class="wrapper">
+    <div class="header-2">
+        <div class="cd-section" id="headers">
+            <div class="page-header header-filter">
+                <div class="page-header-image" data-parallax="true" style="background-image: url('/images/apartmentDark.jpg') ;"></div>
+                <div class="content-center">
+                    <div class="container ml-auto" data-color="orange">
+                        <div class="row ml-auto">
+                            <form asp-action="Edit" class="ml-auto mr-auto">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="AmenityId" />
+                                <div class="form-group">
+                                    <label asp-for="Type" class="control-label"></label>
+                                    <input asp-for="Type" class="form-control" />
+                                    <span asp-validation-for="Type" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <input type="submit" value="Save" class="btn btn-default" />
-                        </div>
-                    </form>
+                    </div>
+
+                    <div>
+                        <a class="text-primary text-center" href="/Apartments/TrackedApartments">Back to Dashboard</a>
+                    </div>
                 </div>
             </div>
-
-            <div>
-                <a class="text-primary text-center" href="/Apartments/TrackedApartments">Back to Dashboard</a>
-            </div>
-            </div>
         </div>
-    </div>
+        </div>
 
-            @section Scripts {
-                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-            }
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
