@@ -197,9 +197,8 @@ namespace APT615.Controllers
 
         private void PopulateAssignedAmenities(Apartment apartment)
         {
-
             var allAmenities = _context.Amenities;
-            var apartmentAmenities = new HashSet<int?>(apartment.ApartmentAmenities.Select(a => a.AmenityId);
+            var apartmentAmenities = new HashSet<int?>(apartment.ApartmentAmenities.Select(a => a.AmenityId));
             var viewModel = new List<AssignedAmenities>();
             if (allAmenities == null)
             {
