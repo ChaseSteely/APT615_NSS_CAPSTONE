@@ -333,13 +333,14 @@ namespace APT615.Controllers
                 .SingleAsync(m => m.ApartmentId == id);
             _context.Apartments.Remove(apartment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(TrackedApartments));
         }
 
         private bool ApartmentExists(int id)
         {
             return _context.Apartments.Any(e => e.ApartmentId == id);
         }
+
         // GET: Amenities/Create
         public IActionResult CreateAmenity()
         {
@@ -351,30 +352,31 @@ namespace APT615.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateAmenity([Bind("AmenityId,Type")] Amenity amenity)
+        public async Task<IActionResult> CreateAmenity([Bind("AmenityId,Type")] ApartmentIndexData amenity)
         {
-            ModelState.Remove("User");
+           
             if (ModelState.IsValid)
             {
-                amenity.User = await _userManager.GetUserAsync(HttpContext.User);
                 var user = await GetCurrentUserAsync();
-                var isDuplicate = await _context.Amenities
-                   .SingleOrDefaultAsync(a => a.User == user && a.Type == amenity.Type);
-                if (isDuplicate != null)
+                var model = new ApartmentIndexData();
+                model.Amenity = await _context.Amenities
+                   .SingleOrDefaultAsync(a => a.User == user && a.Type == amenity.Amenity.Type);
+                if (model.Amenity != null)
                 {
                     ViewData["Message"] = "You Have Already Added This Amenity.";
-                    return View(amenity);
+                    return View(amenity.Amenity);
                 }
-                _context.Add(amenity);
+                _context.Add(amenity.Amenity);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(TrackedApartments));
             }
-            return View(amenity);
+            return View(amenity.Amenity);
         }
 
         // GET: Amenities/Edit/5
         public async Task<IActionResult> EditAmenity(int? id)
         {
+            var model = new ApartmentIndexData();
             if (id == null)
             {
                 return NotFound();
@@ -391,7 +393,7 @@ namespace APT615.Controllers
         // POST: Amenities/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("Edit")]
+        [HttpPost, ActionName("EditAmenity")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id)
         {
@@ -400,6 +402,7 @@ namespace APT615.Controllers
                 return NotFound();
             }
             var user = await GetCurrentUserAsync();
+            var model = new ApartmentIndexData();
             var amenityToUpdate = await _context.Amenities.SingleOrDefaultAsync(a => a.AmenityId == id && a.User == user);
             if (await TryUpdateModelAsync<Amenity>(
                 amenityToUpdate,
@@ -410,7 +413,7 @@ namespace APT615.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(TrackedApartments));
                 }
                 catch (DbUpdateException /* ex */)
                 {
@@ -428,7 +431,7 @@ namespace APT615.Controllers
             {
                 return NotFound();
             }
-
+            var model = new ApartmentIndexData();
             var amenity = await _context.Amenities
                 .SingleOrDefaultAsync(m => m.AmenityId == id);
             if (amenity == null)
@@ -440,10 +443,11 @@ namespace APT615.Controllers
         }
 
         // POST: Amenities/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteAmenity")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmedAmenity(int id)
         {
+            var model = new ApartmentIndexData();
             var amenity = await _context.Amenities.SingleOrDefaultAsync(m => m.AmenityId == id);
             _context.Amenities.Remove(amenity);
             await _context.SaveChangesAsync();
@@ -452,6 +456,7 @@ namespace APT615.Controllers
 
         private bool AmenityExists(int id)
         {
+            var model = new ApartmentIndexData();
             return _context.Amenities.Any(e => e.AmenityId == id);
         }
     }

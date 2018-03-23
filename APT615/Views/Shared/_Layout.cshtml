@@ -41,14 +41,17 @@
                             <a id="homeNavLink" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a id="apartmentsNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="Track">Track APT</a>
-                            </li>
-                            <li class="nav-item">
-                                <a id="amenityNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="TrackedApartments">My APT Dash</a>
-                            </li>
-                        }
+    {
+                    <li class="nav-item">
+                        <a id="apartmentsNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="Track">Track APT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="amenityNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="TrackedApartments">My APT Dash</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="amenityNav" class="nav-link" asp-area="" asp-controller="Amenities" asp-action="Create">Ameneties</a>
+                    </li>
+}
 
                     </ul>
 

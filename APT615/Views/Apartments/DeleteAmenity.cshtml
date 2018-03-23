@@ -1,0 +1,54 @@
+﻿@model APT615.Models.ViewModels.ApartmentIndexData
+
+@{
+    ViewData["Title"] = "Delete Amenity";
+}
+
+<div class="sections-page">
+    <div class="wrapper">
+        <div class="header-2">
+            <div class="cd-section" id="headers">
+                <div class="page-header header-filter">
+                    <div class="page-header-image" data-parallax="true" style="background-image: url('../../images/draft.jpg') ;"></div>
+                    <div class="content-center">
+                        <div class="container" data-color="orange">
+                            <div class="row">
+                                <div class="col-md-8 ml-auto mr-auto text-center">
+                                    <h1 class="title">@Html.DisplayFor(model => model.Amenity.Type)</h1>
+                                </div>
+                                <div class="col-md-10 ml-auto mr-auto">
+                                    <div class="card card-raised card-form-horizontal card-plain" data-background-color>
+                                        <div class="card-body">
+                                            <div class=" col-md-3 mx-auto">
+                                         
+                                                    @Html.DisplayNameFor(model => model.Amenity.Type)
+                                        
+                                            </div>
+                                            <form asp-action="DeleteAmenity">
+                                                <div class="row">
+                                                    <input type="hidden" asp-for="Amenity.AmenityId" />
+
+                                                    <div class="card-footer form-group text-center">
+                                                        <input id="addAptBtn" value="Delete" type="submit" class="btn btn-primary btn-round btn-lg btn-block brand">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                            <div class="text-center">
+                                                <a asp-action="TrackedApartments">Back to Dashboard</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

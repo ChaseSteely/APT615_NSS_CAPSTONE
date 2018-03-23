@@ -4,21 +4,27 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<div class="blog-post">
+    <div class="wrapper">
+        <div class="page-header page-header-small">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('..//apartmentDark.jpg') ;">
+            </div>
 
-<div>
-    <h4>Amenity</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-    </dl>
+            <div>
+                <h4>Amenity</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Type)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.AmenityId">Edit</a> |
+                <a class="text-primary text-center" href="/Apartments/TrackedApartments">Back to Dashboard</a>
+            </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.AmenityId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

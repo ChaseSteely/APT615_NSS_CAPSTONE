@@ -18,6 +18,10 @@
     padding: 10px;
 }
 
+#editLink{
+    padding-right: 10px !important;
+}
+
 #homeLogo, #getIndexMap, #amenityBtn, #addAptBtn, #footerBrand, #dashIndexBtn {
     font-size: 2em;
 }
