@@ -1,6 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>
+(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TF7HLBG');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -23,6 +34,12 @@
 
 </head>
 <body class="template-page sidebar-collapse">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF7HLBG"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
     @using Microsoft.AspNetCore.Identity
     @using APT615.Models
 
@@ -46,17 +63,17 @@
                             <a id="homeNavLink" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
-    {
-                    <li class="nav-item">
-                        <a id="apartmentsNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="Track">Track APT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="amenityNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="TrackedApartments">My APT Dash</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="amenityNav" class="nav-link" asp-area="" asp-controller="Amenities" asp-action="Create">Ameneties</a>
-                    </li>
-}
+                        {
+                            <li class="nav-item">
+                                <a id="apartmentsNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="Track">Track APT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="amenityNav" class="nav-link" asp-area="" asp-controller="Apartments" asp-action="TrackedApartments">My APT Dash</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="amenityNav" class="nav-link" asp-area="" asp-controller="Amenities" asp-action="Create">Ameneties</a>
+                            </li>
+                        }
 
                     </ul>
 
